@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abhinav Pandey — Medical AI Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 400;
+  color: #1a1a2e;
+  background: #fff;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --navy: #1a2744;
+  --navy-dark: #0f1a35;
+  --navy-mid: #243258;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-pale: #f7f0dc;
+  --white: #ffffff;
+  --off-white: #f9f8f5;
+  --light-gray: #eef0f4;
+  --mid-gray: #6b7280;
+  --text: #1a1a2e;
+}
+
+/* ===== TOP UTILITY BAR ===== */
+.utility-bar {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.utility-bar a { color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.utility-bar a:hover { color: var(--gold); }
+.utility-left { display: flex; gap: 1.5rem; }
+.utility-right { display: flex; gap: 1.2rem; align-items: center; }
+.util-sep { color: rgba(255,255,255,0.25); }
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  display: flex;
+  align-items: stretch;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 2rem 0.8rem 0;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  margin-right: 1rem;
+  color: var(--white);
+}
+.logo-icon {
+  width: 46px; height: 46px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.logo-text-main { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+.logo-text-sub { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+
+.nav-links-main { display: flex; list-style: none; flex: 1; }
+.nav-item { position: relative; }
+.nav-item > a {
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0 1.2rem; height: 100%;
+  color: rgba(255,255,255,0.88);
+  font-size: 0.8rem; letter-spacing: 0.06em; font-weight: 600; text-transform: uppercase;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.nav-item > a:hover, .nav-item > a.active { color: var(--white); border-bottom-color: var(--gold); background: rgba(255,255,255,0.06); }
+.nav-chevron { font-size: 0.6rem; transition: transform 0.2s; }
+.nav-item:hover .nav-chevron { transform: rotate(180deg); }
+
+.nav-dropdown {
+  display: none; position: absolute; top: 100%; left: 0;
+  background: var(--navy-dark); min-width: 240px;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  z-index: 300; padding: 0.5rem 0;
+}
+.nav-item:hover .nav-dropdown { display: block; }
+.nav-dropdown a {
+  display: block; padding: 0.65rem 1.5rem;
+  color: rgba(255,255,255,0.8); font-size: 0.8rem;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+.nav-dropdown a:hover { background: rgba(255,255,255,0.07); color: var(--gold); border-left-color: var(--gold); }
+
+.nav-search { display: flex; align-items: center; margin-left: auto; padding: 0 0.5rem; }
+.nav-search button { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 0.5rem; font-size: 1rem; transition: color 0.2s; }
+.nav-search button:hover { color: var(--gold); }
+
+/* ===== TICKER ===== */
+.ticker-bar {
+  background: var(--gold); color: var(--navy-dark);
+  display: flex; overflow: hidden;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.ticker-label {
+  background: var(--navy-dark); color: var(--gold);
+  padding: 0.5rem 1.2rem; white-space: nowrap;
+  flex-shrink: 0; display: flex; align-items: center; gap: 0.5rem;
+}
+.ticker-track { overflow: hidden; flex: 1; display: flex; align-items: center; }
+.ticker-content { display: flex; gap: 3rem; animation: ticker 35s linear infinite; white-space: nowrap; padding: 0.5rem 2rem; }
+.ticker-content span::before { content: '●  '; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; min-height: 92vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden; background: var(--navy-dark);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(15,26,53,0.1) 0%, rgba(15,26,53,0.88) 65%, rgba(15,26,53,0.98) 100%),
+    linear-gradient(135deg, #0f1a35 0%, #1a2744 35%, #0d1520 65%, #1a1030 100%);
+}
+.hero-bg-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-emblem { position: absolute; right: 5%; top: 50%; transform: translateY(-55%); font-size: 18rem; opacity: 0.04; user-select: none; animation: hbeat 2s ease-in-out infinite; }
+@keyframes hbeat { 0%,100%{transform:translateY(-55%) scale(1)} 14%{transform:translateY(-55%) scale(1.06)} 28%{transform:translateY(-55%) scale(1)} 42%{transform:translateY(-55%) scale(1.04)} }
+
+.hero-ecg-svg { position: absolute; bottom: 28%; left: 0; width: 100%; opacity: 0.06; pointer-events: none; }
+
+.hero-content { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; padding: 3rem 3rem 5rem; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem; font-weight: 600;
+}
+.hero-eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: blink 1.8s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-name-line { font-family: 'Libre Baskerville', serif; font-size: clamp(1.4rem,2.5vw,2rem); color: var(--gold); font-style: italic; display: block; margin-bottom: 0.5rem; }
+.hero-title { font-family: 'Libre Baskerville', serif; font-size: clamp(2.8rem,6vw,5.5rem); color: var(--white); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 700; }
+
+.hero-desc { max-width: 640px; color: rgba(255,255,255,0.78); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+.btn-gold { background: var(--gold); color: var(--navy-dark); padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 2px solid var(--gold); transition: background 0.2s, transform 0.15s; display: inline-block; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline-white { background: transparent; color: var(--white); padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.45); transition: border-color 0.2s, color 0.2s; display: inline-block; }
+.btn-outline-white:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-sig { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 2rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.hero-sig-name { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 2rem; color: rgba(255,255,255,0.45); }
+.hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.hero-stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.hero-stat-num { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; color: var(--gold); font-weight: 700; }
+.hero-stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+
+/* ===== PRIORITY STRIP ===== */
+.priority-strip { display: grid; grid-template-columns: repeat(4,1fr); background: var(--navy-mid); }
+.priority-item { display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 2rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: background 0.25s; gap: 0.6rem; }
+.priority-item:last-child { border-right: none; }
+.priority-item:hover { background: rgba(201,168,76,0.1); }
+.priority-icon { font-size: 1.8rem; }
+.priority-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.72); font-weight: 600; line-height: 1.4; }
+.priority-item:hover .priority-label { color: var(--gold); }
+
+/* ===== SITE CONTENT WRAPPER ===== */
+.site-content { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+/* ===== SECTION HEADER ===== */
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 3px solid var(--navy); padding-bottom: 0.75rem; margin-bottom: 2.5rem; }
+.section-header-title { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; }
+.section-header-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); font-weight: 600; border-bottom: 2px solid var(--gold); padding-bottom: 0.1rem; transition: color 0.2s; }
+.section-header-link:hover { color: var(--gold); }
+
+/* ===== ABOUT SECTION ===== */
+#about-section { background: var(--white); padding: 5rem 0; }
+.featured-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
+.featured-main { background: var(--light-gray); position: relative; overflow: hidden; min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end; }
+.featured-main-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1a2744 0%, #0f1a35 50%, #120a22 100%); }
+.featured-ecg { position: absolute; inset: 0; display: flex; align-items: center; padding: 2rem; opacity: 0.07; pointer-events: none; }
+.featured-main-content { position: relative; z-index: 2; padding: 2.5rem; background: linear-gradient(to top, rgba(10,15,35,0.97) 0%, transparent 100%); }
+.featured-tag { display: inline-block; background: var(--gold); color: var(--navy-dark); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.3rem 0.8rem; margin-bottom: 1rem; }
+.featured-headline { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; color: var(--white); line-height: 1.3; margin-bottom: 0.75rem; }
+.featured-excerpt { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.2rem; }
+.read-more { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid var(--gold); padding-bottom: 0.15rem; }
+
+.featured-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.sidebar-card { border: 1px solid var(--light-gray); padding: 1.25rem; transition: border-left-color 0.2s, box-shadow 0.2s; background: var(--white); border-left: 4px solid transparent; }
+.sidebar-card:hover { border-left-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.sidebar-card-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.sidebar-card-title { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; line-height: 1.4; color: var(--navy); font-weight: 700; }
+.sidebar-card-meta { font-size: 0.7rem; color: var(--mid-gray); margin-top: 0.4rem; }
+
+/* ===== RESEARCH SECTION ===== */
+#research-section { background: var(--off-white); padding: 5rem 0; }
+.research-hero { background: var(--navy-dark); color: var(--white); padding: 4rem; position: relative; overflow: hidden; margin-bottom: 3rem; }
+.research-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px); background-size: 50px 50px; }
+.research-live-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem; }
+.live-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: blink 1.5s infinite; }
+.research-hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+.research-title { font-family: 'Libre Baskerville', serif; font-size: clamp(1.5rem,3vw,2.5rem); line-height: 1.25; margin-bottom: 1rem; font-weight: 700; }
+.research-subtitle { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7; max-width: 580px; }
+.research-meta-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; min-width: 220px; flex-shrink: 0; }
+.meta-row { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.meta-row:last-child { border-bottom: none; }
+.meta-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+.meta-value { font-size: 0.82rem; color: var(--gold); font-weight: 600; }
+
+.research-stats { display: grid; grid-template-columns: repeat(4,1fr); background: var(--navy-mid); margin-bottom: 3rem; }
+.research-stat { padding: 1.8rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); color: var(--white); }
+.research-stat:last-child { border-right: none; }
+.research-stat-num { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); display: block; margin-bottom: 0.3rem; }
+.research-stat-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+.project-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.project-card { background: var(--white); border: 1px solid #e0e3ea; border-top: 4px solid var(--navy); padding: 1.8rem; transition: border-top-color 0.25s, box-shadow 0.25s, transform 0.2s; }
+.project-card:hover { border-top-color: var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+.pc-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+.pc-title { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.65rem; line-height: 1.3; }
+.pc-body { font-size: 0.83rem; color: var(--mid-gray); line-height: 1.7; }
+.pc-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); margin-top: 1rem; border-bottom: 2px solid var(--gold); padding-bottom: 0.1rem; transition: color 0.2s; }
+.pc-link:hover { color: var(--gold); }
+
+/* Phase accordion */
+.phase-section { background: var(--white); border: 1px solid #e0e3ea; margin-bottom: 0.75rem; overflow: hidden; }
+.phase-header { padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 1.5rem; cursor: pointer; border-left: 5px solid var(--navy); transition: background 0.2s; }
+.phase-header:hover { background: var(--off-white); }
+.phase-num-badge { background: var(--navy); color: var(--gold); font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 0.9rem; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.phase-name { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+.phase-combos { margin-left: auto; font-size: 0.7rem; letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase; color: var(--gold); }
+.phase-body { padding: 0 1.8rem 1.5rem 4.5rem; font-size: 0.87rem; color: var(--mid-gray); line-height: 1.7; display: none; }
+.phase-section.open .phase-body { display: block; }
+.phase-section.open .phase-header { background: var(--gold-pale); border-left-color: var(--gold); }
+
+.algo-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--navy); }
+.algo-pill { background: var(--navy); color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.2rem; transition: background 0.2s; cursor: default; }
+.algo-pill:hover { background: var(--gold); color: var(--navy-dark); }
+
+/* ===== VISION SECTION ===== */
+#vision-section { background: var(--navy-dark); padding: 5rem 0; color: var(--white); }
+#vision-section .section-header-title { color: var(--gold); }
+#vision-section .section-header { border-bottom-color: var(--gold); }
+.vision-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+.vision-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-top: 4px solid var(--gold); padding: 2.2rem; transition: background 0.25s, transform 0.2s; }
+.vision-card:hover { background: rgba(201,168,76,0.06); transform: translateY(-3px); }
+.vc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+.vc-title { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); margin-bottom: 0.75rem; }
+.vc-body { font-size: 0.87rem; color: rgba(255,255,255,0.65); line-height: 1.75; }
+
+/* ===== QUOTE BANNER ===== */
+.quote-banner { background: var(--navy-mid); padding: 4rem 2rem; text-align: center; }
+.quote-text { font-family: 'Libre Baskerville', serif; font-size: clamp(1.2rem,2.5vw,1.9rem); color: var(--white); font-style: italic; max-width: 800px; margin: 0 auto 1rem; line-height: 1.5; }
+.quote-text::before { content: '\201C'; color: var(--gold); }
+.quote-text::after  { content: '\201D'; color: var(--gold); }
+.quote-attr { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+
+/* ===== COLLABORATE SECTION ===== */
+#collab-section { background: var(--off-white); padding: 5rem 0; }
+.collab-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.collab-card { background: var(--white); border: 1px solid #e0e3ea; border-left: 5px solid var(--navy); padding: 1.8rem; transition: border-left-color 0.25s, box-shadow 0.2s; }
+.collab-card:hover { border-left-color: var(--gold); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+.collab-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+.collab-title { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+.collab-body { font-size: 0.83rem; color: var(--mid-gray); line-height: 1.7; }
+
+/* ===== HASHTAG STRIP ===== */
+.hashtag-strip { background: var(--navy); padding: 1.5rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.hashtag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); transition: color 0.2s; cursor: default; }
+.hashtag:hover { color: var(--gold); }
+
+/* ===== FOOTER ===== */
+footer { background: var(--navy-dark); color: rgba(255,255,255,0.75); padding: 4rem 2rem 0; }
+.footer-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo-mark { width: 56px; height: 56px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1rem; }
+.footer-name { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+.footer-role { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.footer-desc { font-size: 0.83rem; line-height: 1.7; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+.newsletter-form { display: flex; }
+.newsletter-input { flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-right: none; padding: 0.65rem 1rem; color: var(--white); font-size: 0.8rem; font-family: 'Source Sans 3', sans-serif; outline: none; }
+.newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
+.newsletter-btn { background: var(--gold); border: none; color: var(--navy-dark); padding: 0.65rem 1.2rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; font-family: 'Source Sans 3', sans-serif; transition: background 0.2s; }
+.newsletter-btn:hover { background: var(--gold-light); }
+.social-icons { display: flex; gap: 0.6rem; margin-top: 1.2rem; }
+.social-icon { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.45); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.social-icon:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+.footer-col-title { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid var(--gold); padding-bottom: 0.5rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+.footer-links a:hover { color: var(--gold); }
+.footer-links a::before { content: '›'; color: var(--gold); }
+.footer-bottom { max-width: 1400px; margin: 0 auto; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: 1rem; }
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+.footer-bottom-links a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+.footer-bottom-links a:hover { color: var(--gold); }
+
+@media (max-width: 768px) {
+  #project-summary-section [style*="grid-template-columns:repeat(5"] { grid-template-columns: 1fr 1fr !important; }
+  #project-summary-section [style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+  #project-summary-section [style*="grid-template-columns:repeat(4"] { grid-template-columns: 1fr 1fr !important; }
+  #project-summary-section [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .research-hero-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .utility-bar { display: none; }
+  .nav-links-main { display: none; }
+  .priority-strip { grid-template-columns: 1fr 1fr; }
+  .project-cards { grid-template-columns: 1fr; }
+  .collab-grid { grid-template-columns: 1fr; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .research-stats { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-content { padding: 2rem 1.5rem 4rem; }
+  .hero-sig { flex-direction: column; gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="utility-bar">
+  <div class="utility-left">
+    <a href="#">Research Portal</a>
+    <span class="util-sep">|</span>
+    <a href="#">Publications</a>
+    <span class="util-sep">|</span>
+    <a href="#">Data & Methods</a>
+  </div>
+  <div class="utility-right">
+    <a href="#">🇮🇳 India</a>
+    <span class="util-sep">|</span>
+    <a href="#collab-section">Contact</a>
+    <span class="util-sep">|</span>
+    <a href="#">Stay Informed</a>
+  </div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-icon">🫀</div>
+      <div>
+        <div class="logo-text-main">Abhinav Pandey</div>
+        <div class="logo-text-sub">Medical AI Researcher</div>
+      </div>
+    </a>
+    <ul class="nav-links-main">
+      <li class="nav-item">
+        <a href="#about-section">About <span class="nav-chevron">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#about-section">Background & Philosophy</a>
+          <a href="#about-section">Research Approach</a>
+          <a href="#about-section">Publications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#research-section">Research <span class="nav-chevron">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#project-summary-section">Executive Project Summary</a>
+          <a href="#research-section">HeartAI India Project</a>
+          <a href="#research-section">Methodology</a>
+          <a href="#research-section">Feature Analysis</a>
+          <a href="#research-section">Algorithms</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#vision-section">Vision <span class="nav-chevron">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#vision-section">Point-of-Care Deployment</a>
+          <a href="#vision-section">National Scale</a>
+          <a href="#vision-section">Policy Alignment</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#collab-section">Collaborate</a></li>
+      <li class="nav-item"><a href="#collab-section">Contact</a></li>
+    </ul>
+    <div class="nav-search"><button>🔍</button></div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">🔴 LIVE</div>
+  <div class="ticker-track">
+    <div class="ticker-content">
+      <span>HeartAI India — Active Research Underway — Feb 21, 2026</span>
+      <span>303 Indian Patient Records · 5 ML Algorithms · 8,191 Feature Combinations</span>
+      <span>India loses 1 life to CVD every 11 seconds — AI built for India can change this</span>
+      <span>Targeting peer-reviewed publication in medical/biomedical engineering journal</span>
+      <span>Open for collaboration — Cardiologists · Investors · Hospital Networks</span>
+      <span>HeartAI India — Active Research Underway — Feb 21, 2026</span>
+      <span>303 Indian Patient Records · 5 ML Algorithms · 8,191 Feature Combinations</span>
+      <span>India loses 1 life to CVD every 11 seconds — AI built for India can change this</span>
+      <span>Targeting peer-reviewed publication in medical/biomedical engineering journal</span>
+      <span>Open for collaboration — Cardiologists · Investors · Hospital Networks</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-grid"></div>
+  <div class="hero-emblem">🫀</div>
+  <svg class="hero-ecg-svg" viewBox="0 0 1400 120" fill="none">
+    <polyline points="0,60 200,60 240,60 270,20 300,100 330,5 360,110 390,40 420,60 1400,60"
+      stroke="#c9a84c" stroke-width="2" fill="none"
+      stroke-dasharray="1600" stroke-dashoffset="1600">
+      <animate attributeName="stroke-dashoffset" from="1600" to="-1600" dur="5s" repeatCount="indefinite"/>
+    </polyline>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> Medical AI Research · Live — February 2026</div>
+    <h1 class="hero-title">
+      <span class="hero-name-line">Abhinav Pandey</span>
+      Building AI That<br/>Understands The<br/>Indian Heart
+    </h1>
+    <p class="hero-desc">Developing India's first cardiac risk prediction model trained exclusively on real Indian hospital data — because 2.8 million Indians lost to cardiovascular disease every year deserve AI that was built <em>for them.</em></p>
+    <div class="hero-actions">
+      <a href="#research-section" class="btn-gold">View Research →</a>
+      <a href="#collab-section" class="btn-outline-white">Collaborate With Us</a>
+    </div>
+    <div class="hero-sig">
+      <div class="hero-sig-name">Abhinav Pandey</div>
+      <div class="hero-stats">
+        <div class="hero-stat-item"><span class="hero-stat-num">303</span><span class="hero-stat-label">Patient Records</span></div>
+        <div class="hero-stat-item"><span class="hero-stat-num">8,191</span><span class="hero-stat-label">Feature Combinations</span></div>
+        <div class="hero-stat-item"><span class="hero-stat-num">5</span><span class="hero-stat-label">ML Algorithms</span></div>
+        <div class="hero-stat-item"><span class="hero-stat-num">13</span><span class="hero-stat-label">Clinical Features</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIORITY STRIP -->
+<div class="priority-strip">
+  <a href="#research-section" class="priority-item"><div class="priority-icon">🧬</div><div class="priority-label">India-First<br/>Training Data</div></a>
+  <a href="#research-section" class="priority-item"><div class="priority-icon">🔍</div><div class="priority-label">Explainable<br/>AI (SHAP)</div></a>
+  <a href="#vision-section" class="priority-item"><div class="priority-icon">🏥</div><div class="priority-label">Point-of-Care<br/>Deployment</div></a>
+  <a href="#collab-section" class="priority-item"><div class="priority-icon">🤝</div><div class="priority-label">Open for<br/>Collaboration</div></a>
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="about-section">
+  <div class="site-content" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="section-header">
+      <div class="section-header-title">About the Researcher</div>
+      <a href="#research-section" class="section-header-link">View Research →</a>
+    </div>
+    <div class="featured-grid reveal">
+      <div class="featured-main">
+        <div class="featured-main-bg"></div>
+        <svg class="featured-ecg" viewBox="0 0 600 120" fill="none">
+          <polyline points="0,60 100,60 130,60 150,20 170,100 190,5 210,110 230,40 250,60 600,60"
+            stroke="#c9a84c" stroke-width="1.5" fill="none"
+            stroke-dasharray="800" stroke-dashoffset="800">
+            <animate attributeName="stroke-dashoffset" from="800" to="-800" dur="4s" repeatCount="indefinite"/>
+          </polyline>
+        </svg>
+        <div class="featured-main-content">
+          <div class="featured-tag">Medical AI Researcher</div>
+          <div class="featured-headline">The Indian Heart Is Different — and Science Has Been Ignoring It</div>
+          <p class="featured-excerpt">Indian patients develop coronary artery disease nearly a decade earlier than Western counterparts, presenting with diffuse multi-vessel disease and silent ischaemia masked by diabetic neuropathy. Every AI cardiac model that existed was speaking a language Indian patients didn't — so I decided to change that.</p>
+          <a href="#research-section" class="read-more">Read More →</a>
+        </div>
+      </div>
+      <div class="featured-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-card-tag">Research Domain</div>
+          <div class="sidebar-card-title">Clinical Cardiology × Artificial Intelligence × Indian CVD Epidemiology</div>
+          <div class="sidebar-card-meta">Real Heart Care Hospital, India — Anonymised Data</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-card-tag">Research Philosophy</div>
+          <div class="sidebar-card-title">Every Failed Model Is a Finding — Radical Transparency, Complete Scientific Record</div>
+          <div class="sidebar-card-meta">Consistent with Edison's Principle · Endorsed by Leading Medical AI Journals</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-card-tag">Alignment</div>
+          <div class="sidebar-card-title">Viksit Bharat · Make in India for India · Ayushman Bharat Digital Health Mission</div>
+          <div class="sidebar-card-meta">FDA/EMA SaMD Approval Pathway Compliant</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sidebar-card-tag">Target Publication</div>
+          <div class="sidebar-card-title">Peer-reviewed Medical or Biomedical Engineering Journal — Live Research</div>
+          <div class="sidebar-card-meta">Translational research with commercial deployment pathway built in</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     PROJECT SUMMARY SECTION
+     ============================ -->
+<section id="project-summary-section" style="position:relative;overflow:hidden;padding:0;background:#060d1e;">
+
+  <!-- Animated "video" canvas background -->
+  <canvas id="bgCanvas" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.55;pointer-events:none;"></canvas>
+
+  <!-- Dark overlay gradient for text readability -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(6,13,30,0.55) 0%, rgba(6,13,30,0.72) 40%, rgba(6,13,30,0.88) 100%);pointer-events:none;z-index:1;"></div>
+
+  <!-- Content -->
+  <div class="site-content" style="position:relative;z-index:2;padding-top:5rem;padding-bottom:5rem;">
+
+    <!-- Section Header -->
+    <div class="section-header" style="border-bottom-color:var(--gold);margin-bottom:3rem;">
+      <div class="section-header-title" style="color:var(--gold);">Project Summary</div>
+      <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:600;">Executive Overview · Live Research · Feb 2026</span>
+    </div>
+
+    <!-- At a Glance strip -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(5,1fr);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);margin-bottom:3rem;">
+      <div style="padding:1.4rem 1.2rem;border-right:1px solid rgba(201,168,76,0.15);text-align:center;">
+        <div style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Data Source</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--gold);line-height:1.3;">Real Heart Care<br/>Hospital, India</div>
+      </div>
+      <div style="padding:1.4rem 1.2rem;border-right:1px solid rgba(201,168,76,0.15);text-align:center;">
+        <div style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Dataset</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--gold);line-height:1.3;">303 Patients<br/>13 Features + Outcome</div>
+      </div>
+      <div style="padding:1.4rem 1.2rem;border-right:1px solid rgba(201,168,76,0.15);text-align:center;">
+        <div style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Algorithms</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--gold);line-height:1.3;">LR · RF · DT<br/>SVM · XGBoost</div>
+      </div>
+      <div style="padding:1.4rem 1.2rem;border-right:1px solid rgba(201,168,76,0.15);text-align:center;">
+        <div style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Study Domain</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--gold);line-height:1.3;">Cardiology × AI<br/>× Indian CVD Epi.</div>
+      </div>
+      <div style="padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;">Target Venue</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--gold);line-height:1.3;">Peer-reviewed<br/>Medical Journal</div>
+      </div>
+    </div>
+
+    <!-- Two-column: Background + Objectives -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+
+      <!-- Background -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-top:4px solid var(--gold);padding:2rem;">
+        <div style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:1rem;letter-spacing:0.05em;text-transform:uppercase;">Background & Rationale</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.72);line-height:1.8;margin-bottom:1rem;">
+          CVD claims <strong style="color:var(--gold);">17.9 million lives annually</strong> (WHO). In India — home to 77 million+ diabetic adults — coronary artery disease strikes nearly a <strong style="color:var(--gold);">decade earlier</strong> than in Western populations, driven by premature metabolic syndrome, genetic predisposition, and rapidly urbanising lifestyles.
+        </p>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.72);line-height:1.8;">
+          All established ML models — Cleveland, Framingham — were built on <em>Western Caucasian cohorts</em>. Their applicability to Indian clinical practice is fundamentally limited. This project fills that critical gap: the <strong style="color:var(--gold);">first cardiac risk ML model grounded in authentic South Asian clinical ground truth.</strong>
+        </p>
+      </div>
+
+      <!-- Objectives -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-top:4px solid rgba(201,168,76,0.5);padding:2rem;">
+        <div style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:1rem;letter-spacing:0.05em;text-transform:uppercase;">Research Objectives</div>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:0.1rem;">›</span>
+            <span style="font-size:0.83rem;color:rgba(255,255,255,0.7);line-height:1.6;">Develop ML cardiac risk model surpassing Western-trained benchmark accuracy for Indian patients</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:0.1rem;">›</span>
+            <span style="font-size:0.83rem;color:rgba(255,255,255,0.7);line-height:1.6;">Exhaustive feature analysis — all 13 individual, 78 pairs, 286 triplets, and higher-order combinations</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:0.1rem;">›</span>
+            <span style="font-size:0.83rem;color:rgba(255,255,255,0.7);line-height:1.6;">Validate against real Indian hospital outcomes under authentic clinical practice conditions</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:0.1rem;">›</span>
+            <span style="font-size:0.83rem;color:rgba(255,255,255,0.7);line-height:1.6;">Publish in peer-reviewed medical or biomedical engineering journal as original scientific contribution</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:0.1rem;">›</span>
+            <span style="font-size:0.83rem;color:rgba(255,255,255,0.7);line-height:1.6;">Assess commercial viability as clinical decision-support tool — with full Digital Data Protection Law compliance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Uniqueness — 3x2 grid -->
+    <div style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1.2rem;padding-top:1rem;" class="reveal">Niche Contribution & Uniqueness</div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">🧬</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">India-First Training Data</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">Learns the India-specific risk curve — earlier onset, metabolic syndrome, diffuse coronary patterns — directly from clinical ground truth, not extrapolated from Western data.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">💡</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">Clinician-Interpretable Output</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">SHAP explanations directly mappable to established clinical reasoning. Not a black box — every decision verifiable by a practising cardiologist against cardiology literature.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">🔢</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">Exhaustive Combinatoric Analysis</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">8,191 combinations (¹³C₁ through ¹³C₁₃) analysed. Three feature triplets demonstrate synergy exceeding individual factors — rare depth in cardiology ML literature.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">⚖️</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">Multi-Algorithm Framework</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">Five ML paradigms evaluated head-to-head. Best-performing model selected through rigorous statistical evidence — not algorithmic preference or convenient defaults.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">📋</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">Failure as Scientific Record</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">Every failed iteration documented — addressing medical AI's reproducibility crisis. Meets transparency standards mandated by leading scientific journals. Edison's principle applied.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;">
+        <div style="font-size:1.4rem;margin-bottom:0.7rem;">🚀</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;">Translational & Commercial Pathway</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;">Commercial deployment as a clinical decision-support tool is a core research objective — bridging academic development and real-world Indian hospital deployment from Day 1.</p>
+      </div>
+    </div>
+
+    <!-- Alignment strip -->
+    <div class="reveal" style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.18);padding:2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;">
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.5rem;">Explainable AI</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;">SHAP-powered interpretability aligns with FDA/EMA SaMD approval pathway — mandatory for medical AI regulatory clearance.</p>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.5rem;">Digital Health Equity</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;">Directly serves ABDM's push toward AI-assisted diagnostics in resource-constrained settings. Population-specific. Policy-ready. Nationally scalable.</p>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.5rem;">Iterative Evidence</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;">Live, iterative methodology — consistent with the modern paradigm of continuous model learning and real-world evidence generation.</p>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.5rem;">Big Data × Clinical AI</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.6;">Hybrid SHAP-guided discovery combines cardiologist domain knowledge with machine-guided discovery of non-linear, high-order interaction effects.</p>
+      </div>
+    </div>
+
+    <!-- Research philosophy callout -->
+    <div class="reveal" style="margin-top:2rem;padding:1.5rem 2rem;border-left:5px solid var(--gold);background:rgba(201,168,76,0.06);">
+      <span style="font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:700;">Research Philosophy</span>
+      <p style="margin-top:0.5rem;font-family:'Libre Baskerville',serif;font-style:italic;font-size:0.92rem;color:rgba(255,255,255,0.78);line-height:1.7;">
+        Consistent with Thomas Edison's principle, every failed model iteration and unexpected finding is treated as a scientific finding in its own right — producing an honest and complete scientific record rather than a sanitised account of selective successes.
+      </p>
+    </div>
+
+  </div><!-- /site-content -->
+</section>
+
+<!-- RESEARCH SECTION -->
+<section id="research-section">
+  <div class="site-content" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="section-header">
+      <div class="section-header-title">HeartAI India — The Project</div>
+      <span class="section-header-link">Live Research · Feb 2026</span>
+    </div>
+
+    <div class="research-hero reveal">
+      <div class="research-live-badge"><span class="live-pulse"></span> Active Research — Initiated 21 February 2026</div>
+      <div class="research-hero-inner">
+        <div>
+          <div class="research-title">Heart Disease Prediction Model<br/>A Machine Learning Approach<br/>with Clinical Validation</div>
+          <p class="research-subtitle">The first cardiac risk ML model trained exclusively on real Indian hospital data — validated against authentic South Asian clinical outcomes, designed for deployment in resource-constrained Indian healthcare settings where specialist access is limited.</p>
+        </div>
+        <div class="research-meta-box">
+          <div class="meta-row"><span class="meta-label">Data Source</span><span class="meta-value">Real Heart Care Hospital, India</span></div>
+          <div class="meta-row"><span class="meta-label">Dataset Size</span><span class="meta-value">303 Anonymised Patients</span></div>
+          <div class="meta-row"><span class="meta-label">Primary Metric</span><span class="meta-value">AUC-ROC + Weighted Recall</span></div>
+          <div class="meta-row"><span class="meta-label">Explainability</span><span class="meta-value">SHAP Values</span></div>
+          <div class="meta-row"><span class="meta-label">Status</span><span class="meta-value">🟢 Active Development</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-stats reveal">
+      <div class="research-stat"><span class="research-stat-num">303</span><span class="research-stat-label">Indian Patient Records</span></div>
+      <div class="research-stat"><span class="research-stat-num">8,191</span><span class="research-stat-label">Feature Combos Tested</span></div>
+      <div class="research-stat"><span class="research-stat-num">5</span><span class="research-stat-label">ML Algorithms</span></div>
+      <div class="research-stat"><span class="research-stat-num">13</span><span class="research-stat-label">Clinical Features</span></div>
+    </div>
+
+    <div class="project-cards">
+      <div class="project-card reveal">
+        <div class="pc-icon">🧬</div>
+        <div class="pc-title">India-First Training Data</div>
+        <p class="pc-body">Unlike every existing benchmark model — Cleveland, Framingham — this research learns the India-specific risk curve directly from Indian clinical ground truth: earlier onset, metabolic syndrome co-morbidity, diffuse coronary patterns.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="pc-icon">🔍</div>
+        <div class="pc-title">Exhaustive Feature Analysis</div>
+        <p class="pc-body">All 13 individual features, all 78 pairwise combinations, and priority triple combinations analysed. The triplet cp + exang + oldpeak constitutes a triple-positive stress test with near-diagnostic certainty for significant CAD.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="pc-icon">💡</div>
+        <div class="pc-title">Clinician-Interpretable Output</div>
+        <p class="pc-body">Every prediction grounded in cardiology literature via SHAP values — not a black box. Fully aligned with FDA/EMA Software as a Medical Device (SaMD) approval pathways. Clinicians can verify every risk flag.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="pc-icon">⚖️</div>
+        <div class="pc-title">Multi-Algorithm Framework</div>
+        <p class="pc-body">Logistic Regression, Random Forest, Decision Tree, SVM, and XGBoost evaluated head-to-head. Best-performing model selected through rigorous statistical evidence — not algorithmic preference or convenience.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="pc-icon">📋</div>
+        <div class="pc-title">Documented Failure as Science</div>
+        <p class="pc-body">Every failed model iteration documented with full transparency. This directly addresses medical AI's reproducibility crisis — consistent with Edison's principle that every failure is a finding in its own right.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+      <div class="project-card reveal">
+        <div class="pc-icon">🚀</div>
+        <div class="pc-title">Translational Pathway</div>
+        <p class="pc-body">Commercial deployment as a clinical decision-support tool is a research objective from Day 1 — translational science bridging academic model development and real-world point-of-care deployment in Indian hospitals.</p>
+        <a href="#" class="pc-link">Learn More →</a>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;" class="reveal">
+      <div class="section-header" style="margin-bottom:1.5rem;"><div class="section-header-title">Research Methodology — Five Phases</div></div>
+      <div class="phase-section open">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-num-badge">01</div>
+          <div class="phase-name">Individual Feature Analysis</div>
+          <div class="phase-combos">13 Features</div>
+        </div>
+        <div class="phase-body">Each of the 13 clinical parameters — demographics, haemodynamic, biochemistry, ECG indices, and advanced imaging — is individually correlated with heart disease probability, with full pathophysiological justification grounded in standard cardiology literature (Braunwald, Levine, Mattu & Brady, Agarwal, Klabunde).</div>
+      </div>
+      <div class="phase-section">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-num-badge">02</div>
+          <div class="phase-name">Pairwise Combination Analysis</div>
+          <div class="phase-combos">78 Pairs</div>
+        </div>
+        <div class="phase-body">All 78 clinically meaningful feature pairs systematically evaluated for synergistic predictive value, categorised into six clinical domains (age-based, symptomatic, vascular, ECG, cardiac-functional, and metabolic), and ranked on a five-star combined correlation scale.</div>
+      </div>
+      <div class="phase-section">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-num-badge">03</div>
+          <div class="phase-name">Triple Combination Analysis</div>
+          <div class="phase-combos">286 Triplets</div>
+        </div>
+        <div class="phase-body">Priority triplets assessed for emergent synergistic — not merely additive — predictive power. Highest-rated triplets span multiple diagnostic modalities. The triplet cp + exang + oldpeak constitutes a triple-positive stress test with near-diagnostic certainty for haemodynamically significant CAD.</div>
+      </div>
+      <div class="phase-section">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-num-badge">04</div>
+          <div class="phase-name">SHAP-Guided Algorithmic Discovery</div>
+          <div class="phase-combos">Higher-Order</div>
+        </div>
+        <div class="phase-body">Beyond triplets, SHAP values and Random Forest feature importance scores guide higher-order combination discovery algorithmically — replacing manual selection bias with statistically rigorous, reproducible feature engineering consistent with current best practices in medical AI.</div>
+      </div>
+      <div class="phase-section">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-num-badge">05</div>
+          <div class="phase-name">Clinical Validation Against Indian Outcomes</div>
+          <div class="phase-combos">Real-World</div>
+        </div>
+        <div class="phase-body">All five ML models evaluated against real Indian hospital outcomes. Primary metric: AUC-ROC. Clinically weighted Recall (sensitivity) is prioritised — false negatives in cardiac diagnosis carry disproportionately high clinical cost. Every iteration documented with full transparency.</div>
+      </div>
+    </div>
+
+    <div class="algo-row reveal">
+      <span class="algo-pill">Logistic Regression</span>
+      <span class="algo-pill">Random Forest</span>
+      <span class="algo-pill">Decision Tree</span>
+      <span class="algo-pill">Support Vector Machine</span>
+      <span class="algo-pill">XGBoost</span>
+      <span class="algo-pill">SHAP Explainability</span>
+    </div>
+  </div>
+</section>
+
+<!-- VISION SECTION -->
+<section id="vision-section">
+  <div class="site-content" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="section-header">
+      <div class="section-header-title">Vision — Beyond the Paper</div>
+      <a href="#collab-section" class="section-header-link" style="color:var(--gold);border-bottom-color:rgba(201,168,76,0.4);">Collaborate →</a>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-card reveal">
+        <div class="vc-icon">🏥</div>
+        <div class="vc-title">Point-of-Care Deployment</div>
+        <p class="vc-body">A general physician in a Tier-2 city, without access to a cardiologist, running a 30-second AI screen on a patient who "feels fine" — and catching a silent, progressing coronary blockage. That is the clinical future this model is designed to enable.</p>
+      </div>
+      <div class="vision-card reveal">
+        <div class="vc-icon">🌍</div>
+        <div class="vc-title">National Scale Impact</div>
+        <p class="vc-body">India's Ayushman Bharat Digital Health Mission is already building the rails for AI-assisted diagnostics. A validated, population-specific cardiac model is not just timely — it is policy-ready, nationally deployable, and aligned with Viksit Bharat.</p>
+      </div>
+      <div class="vision-card reveal">
+        <div class="vc-icon">🔬</div>
+        <div class="vc-title">Scientific Transparency</div>
+        <p class="vc-body">SHAP-powered explainability ensures every risk flag maps directly to cardiology literature a practicing doctor can verify. Medicine-grade AI — built for clinical trust, not just academic benchmarks. Every failure documented. Every decision traceable.</p>
+      </div>
+      <div class="vision-card reveal">
+        <div class="vc-icon">⚡</div>
+        <div class="vc-title">Health Equity Through AI</div>
+        <p class="vc-body">India loses one life to cardiovascular disease every eleven seconds. The tools to prevent those deaths must be calibrated to Indian genes, Indian lifestyles, Indian clinical reality. That is the mission. That is Make in India for India.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BANNER -->
+<div class="quote-banner">
+  <p class="quote-text">Because the heart of India deserves AI that understands it.</p>
+  <div class="quote-attr">— Abhinav Pandey · Medical AI Researcher · India, 2026</div>
+</div>
+
+<!-- COLLABORATE SECTION -->
+<section id="collab-section">
+  <div class="site-content" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="section-header">
+      <div class="section-header-title">Open for Collaboration</div>
+      <span class="section-header-link">The Research Is Live. The Conversation Is Open.</span>
+    </div>
+    <div class="collab-grid">
+      <div class="collab-card reveal">
+        <div class="collab-icon">💰</div>
+        <div class="collab-title">Healthcare Investors</div>
+        <p class="collab-body">Venture funds and angels focused on digital health and MedTech in India. The research is live, the data is Indian, the commercial pathway is built in from Day 1.</p>
+      </div>
+      <div class="collab-card reveal">
+        <div class="collab-icon">🏥</div>
+        <div class="collab-title">Hospital Networks</div>
+        <p class="collab-body">Diagnostic chains and hospital systems interested in piloting AI decision-support tools — especially in Tier-2 and Tier-3 cities where specialist cardiology access is limited.</p>
+      </div>
+      <div class="collab-card reveal">
+        <div class="collab-icon">🩺</div>
+        <div class="collab-title">Cardiologists</div>
+        <p class="collab-body">Clinical research partners who can contribute to validation, provide ground-truth expertise, and co-author the peer-reviewed publication targeting top medical journals.</p>
+      </div>
+      <div class="collab-card reveal">
+        <div class="collab-icon">🤖</div>
+        <div class="collab-title">Medical AI Researchers</div>
+        <p class="collab-body">Researchers working on Indian cardiovascular datasets, explainable AI, or clinical decision support — especially those aligned with the XAI paradigm for SaMD approval.</p>
+      </div>
+      <div class="collab-card reveal">
+        <div class="collab-icon">📜</div>
+        <div class="collab-title">Regulatory Experts</div>
+        <p class="collab-body">Policy and regulatory professionals navigating India's Digital Health landscape and the FDA/EMA SaMD approval pathways for AI medical devices. ABDM alignment expertise welcome.</p>
+      </div>
+      <div class="collab-card reveal">
+        <div class="collab-icon">📣</div>
+        <div class="collab-title">Amplifiers</div>
+        <p class="collab-body">Science communicators, health journalists, and anyone who believes the heart of India deserves AI built for it. Share this. Spread the mission. Viksit Bharat starts here.</p>
+      </div>
+    </div>
+    <div style="margin-top:3rem;text-align:center;" class="reveal">
+      <p style="font-size:1rem;color:var(--mid-gray);margin-bottom:1.5rem;">Drop a message, send a DM, or share this with someone who should see it.</p>
+      <a href="mailto:abhinav@example.com" class="btn-gold" style="display:inline-block;">Contact Abhinav →</a>
+    </div>
+  </div>
+</section>
+
+<!-- HASHTAG STRIP -->
+<div class="hashtag-strip">
+  <span class="hashtag">#MedicalAI</span>
+  <span class="hashtag">#CardiovascularHealth</span>
+  <span class="hashtag">#HealthcareInnovation</span>
+  <span class="hashtag">#DigitalHealth</span>
+  <span class="hashtag">#IndiaHealthcare</span>
+  <span class="hashtag">#MachineLearning</span>
+  <span class="hashtag">#HeartDisease</span>
+  <span class="hashtag">#AIinMedicine</span>
+  <span class="hashtag">#MedTech</span>
+  <span class="hashtag">#StartupIndia</span>
+  <span class="hashtag">#ExplainableAI</span>
+  <span class="hashtag">#MakeInIndia</span>
+  <span class="hashtag">#ViksitBharat</span>
+  <span class="hashtag">#OpenToCollaborate</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-mark">🫀</div>
+      <div class="footer-name">Abhinav Pandey</div>
+      <div class="footer-role">Medical AI Researcher · India</div>
+      <p class="footer-desc">Developing India's first cardiac risk prediction model trained exclusively on real Indian hospital data. Live research. Real patients. Indian outcomes. Translational ambition.</p>
+      <div style="font-size:0.78rem;color:var(--gold);font-weight:600;margin-bottom:0.8rem;letter-spacing:0.1em;">Subscribe for Research Updates</div>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="Your email address"/>
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+      <div class="social-icons">
+        <a href="#" class="social-icon" title="LinkedIn">in</a>
+        <a href="#" class="social-icon" title="X">𝕏</a>
+        <a href="#" class="social-icon" title="ResearchGate">R</a>
+        <a href="#" class="social-icon" title="Email">✉</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Research</div>
+      <ul class="footer-links">
+        <li><a href="#research-section">HeartAI India Project</a></li>
+        <li><a href="#research-section">Feature Analysis</a></li>
+        <li><a href="#research-section">Methodology</a></li>
+        <li><a href="#research-section">Algorithms</a></li>
+        <li><a href="#research-section">SHAP Explainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">About</div>
+      <ul class="footer-links">
+        <li><a href="#about-section">Background</a></li>
+        <li><a href="#vision-section">Vision</a></li>
+        <li><a href="#vision-section">Policy Alignment</a></li>
+        <li><a href="#about-section">Publications</a></li>
+        <li><a href="#collab-section">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Collaborate</div>
+      <ul class="footer-links">
+        <li><a href="#collab-section">Healthcare Investors</a></li>
+        <li><a href="#collab-section">Hospital Networks</a></li>
+        <li><a href="#collab-section">Cardiologists</a></li>
+        <li><a href="#collab-section">AI Researchers</a></li>
+        <li><a href="#collab-section">Regulatory Experts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Abhinav Pandey — Medical AI Researcher · Real Heart Care Hospital, India (Anonymised Data)</div>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Disclaimer</a>
+      <a href="#">Data Ethics</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== PROJECT SUMMARY CANVAS ANIMATION =====
+  // Simulates a looping ~7s medical "video" background:
+  // ECG heartbeat line, floating heart particles, radial pulse rings, neural network nodes
+  (function() {
+    const canvas = document.getElementById('bgCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const GOLD  = 'rgba(201,168,76,';
+    const WHITE = 'rgba(255,255,255,';
+    const RED   = 'rgba(220,60,60,';
+
+    // ---- ECG Line ----
+    const ECG_CYCLE = 420; // frames per full beat (~7s at 60fps)
+    let ecgOffset = 0;
+    function ecgY(x, w) {
+      const t = ((x / w) + ecgOffset / ECG_CYCLE) % 1;
+      if (t < 0.35) return 0;
+      if (t < 0.38) return -Math.sin((t - 0.35) / 0.03 * Math.PI) * 0.08;
+      if (t < 0.40) return Math.sin((t - 0.38) / 0.02 * Math.PI) * 0.35;
+      if (t < 0.44) return -Math.sin((t - 0.40) / 0.04 * Math.PI) * 0.55;
+      if (t < 0.48) return Math.sin((t - 0.44) / 0.04 * Math.PI) * 0.18;
+      if (t < 0.52) return Math.sin((t - 0.48) / 0.04 * Math.PI) * 0.08;
+      return 0;
+    }
+
+    // ---- Floating particles ----
+    const particles = Array.from({length: 55}, () => ({
+      x: Math.random(), y: Math.random(),
+      r: 1 + Math.random() * 2.5,
+      vx: (Math.random() - 0.5) * 0.0003,
+      vy: -0.0001 - Math.random() * 0.0003,
+      alpha: 0.15 + Math.random() * 0.35,
+      color: Math.random() > 0.6 ? GOLD : WHITE
+    }));
+
+    // ---- Pulse rings ----
+    const rings = [];
+    let ringTimer = 0;
+    function spawnRing() {
+      rings.push({ x: 0.5 + (Math.random()-0.5)*0.3, y: 0.5 + (Math.random()-0.5)*0.3, r: 0, maxR: 0.25 + Math.random()*0.15, life: 0 });
+    }
+    spawnRing();
+
+    // ---- Neural nodes ----
+    const nodes = Array.from({length: 18}, () => ({
+      x: Math.random(), y: Math.random(),
+      pulse: Math.random() * Math.PI * 2
+    }));
+    // edges: connect nearby nodes
+    const edges = [];
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i+1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        if (Math.sqrt(dx*dx+dy*dy) < 0.28) edges.push([i,j]);
+      }
+    }
+
+    let frame = 0;
+    function draw() {
+      const W = canvas.width, H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Background gradient
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#060d1e');
+      bg.addColorStop(1, '#0a1428');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // --- Grid lines ---
+      ctx.strokeStyle = GOLD + '0.04)';
+      ctx.lineWidth = 1;
+      const gridSize = 60;
+      for (let x = 0; x < W; x += gridSize) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+      for (let y = 0; y < H; y += gridSize) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+      // --- Neural network edges ---
+      edges.forEach(([i,j]) => {
+        const ni = nodes[i], nj = nodes[j];
+        const pulse = Math.sin(frame * 0.018 + ni.pulse) * 0.5 + 0.5;
+        ctx.strokeStyle = GOLD + (0.04 + pulse * 0.07) + ')';
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(ni.x * W, ni.y * H);
+        ctx.lineTo(nj.x * W, nj.y * H);
+        ctx.stroke();
+      });
+
+      // --- Neural network nodes ---
+      nodes.forEach(n => {
+        const pulse = Math.sin(frame * 0.018 + n.pulse) * 0.5 + 0.5;
+        const r = 2 + pulse * 2.5;
+        ctx.beginPath();
+        ctx.arc(n.x * W, n.y * H, r, 0, Math.PI * 2);
+        ctx.fillStyle = GOLD + (0.2 + pulse * 0.4) + ')';
+        ctx.fill();
+      });
+
+      // --- Pulse rings ---
+      ringTimer++;
+      if (ringTimer > 110) { spawnRing(); ringTimer = 0; }
+      for (let i = rings.length - 1; i >= 0; i--) {
+        const ring = rings[i];
+        ring.life++;
+        ring.r += 0.003;
+        const progress = ring.r / ring.maxR;
+        const alpha = (1 - progress) * 0.25;
+        ctx.beginPath();
+        ctx.arc(ring.x * W, ring.y * H, ring.r * Math.min(W, H), 0, Math.PI * 2);
+        ctx.strokeStyle = RED + alpha + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        if (ring.r >= ring.maxR) rings.splice(i, 1);
+      }
+
+      // --- Floating particles ---
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+        if (p.x < 0 || p.x > 1) p.vx *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      });
+
+      // --- ECG Line (multi-row, faded) ---
+      const rowSpacings = [0.25, 0.5, 0.75];
+      rowSpacings.forEach((rowY, ri) => {
+        const amplitude = H * 0.1;
+        const baseY = rowY * H;
+        ctx.beginPath();
+        for (let px = 0; px <= W; px += 2) {
+          const y = baseY + ecgY(px, W) * amplitude;
+          px === 0 ? ctx.moveTo(px, y) : ctx.lineTo(px, y);
+        }
+        ctx.strokeStyle = ri === 1
+          ? GOLD + '0.55)'
+          : GOLD + '0.18)';
+        ctx.lineWidth = ri === 1 ? 1.8 : 1;
+        ctx.shadowColor = GOLD + '0.6)';
+        ctx.shadowBlur = ri === 1 ? 8 : 0;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      });
+
+      // --- Heartbeat flash on QRS peak ---
+      const peakPhase = (ecgOffset % ECG_CYCLE) / ECG_CYCLE;
+      if (peakPhase > 0.38 && peakPhase < 0.48) {
+        const intensity = Math.sin((peakPhase - 0.38) / 0.10 * Math.PI);
+        const radial = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, H*0.6);
+        radial.addColorStop(0, RED + (0.08 * intensity) + ')');
+        radial.addColorStop(1, 'transparent');
+        ctx.fillStyle = radial;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      ecgOffset = (ecgOffset + 1) % ECG_CYCLE;
+      frame++;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  function togglePhase(header) {
+    const section = header.closest('.phase-section');
+    const isOpen = section.classList.contains('open');
+    document.querySelectorAll('.phase-section').forEach(s => s.classList.remove('open'));
+    if (!isOpen) section.classList.add('open');
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const siblings = Array.from(e.target.parentElement?.children || []);
+        const idx = siblings.indexOf(e.target);
+        e.target.style.transitionDelay = (idx % 3) * 0.1 + 's';
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => obs.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-item > a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
