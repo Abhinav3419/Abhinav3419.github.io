@@ -3,1599 +3,774 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abhinav Pandey — AI/ML Engineer & Researcher</title>
-<meta name="description" content="Abhinav Pandey — Aspiring AI/ML Engineer with a strong foundation in Mathematics, Applied Mechanics, and Electronics. Building intelligent systems that solve real-world problems.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Abhinav Pandey — ML Engineer & Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ==================== CSS VARIABLES ==================== */
 :root {
-  --bg-primary: #FAFAF8;
-  --bg-secondary: #F2F0EC;
-  --bg-card: #FFFFFF;
-  --text-primary: #1A1A1A;
-  --text-secondary: #555555;
-  --text-muted: #888888;
-  --accent: #E86833;
-  --accent-light: #FFF0E8;
-  --accent-hover: #D45A28;
-  --border: #E5E3DF;
-  --border-light: #EDEBE7;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'Outfit', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bg: #0a0a0c;
+  --bg2: #111114;
+  --text: #e8e6e1;
+  --text-dim: #8a8780;
+  --accent: #c9a96e;
+  --accent2: #7eb8a2;
+  --border: rgba(255,255,255,0.06);
+  --glow: rgba(201,169,110,0.08);
 }
-
-/* ==================== RESET & BASE ==================== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-}
-
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  background: var(--bg-primary);
-  line-height: 1.7;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
-}
-
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-
-::selection {
-  background: var(--accent);
-  color: white;
-}
-
-/* ==================== NAVIGATION ==================== */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0 2rem;
-  background: rgba(250, 250, 248, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-light);
-  transition: var(--transition);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
-
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-.nav-logo span {
-  color: var(--accent);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: color var(--transition);
-  position: relative;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: width var(--transition);
-}
-
-.nav-links a:hover { color: var(--text-primary); }
-.nav-links a:hover::after { width: 100%; }
-
-.nav-cta {
-  padding: 8px 20px !important;
-  background: var(--text-primary);
-  color: white !important;
-  border-radius: 100px;
-  font-size: 0.85rem !important;
-  font-weight: 600 !important;
-  transition: all var(--transition) !important;
-}
-
-.nav-cta:hover {
-  background: var(--accent) !important;
-  color: white !important;
-  transform: translateY(-1px);
-}
-
-.nav-cta::after { display: none !important; }
-
-/* Mobile hamburger */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 4px;
-  z-index: 1001;
-}
-
-.nav-hamburger span {
-  width: 24px;
-  height: 2px;
-  background: var(--text-primary);
-  transition: var(--transition);
-}
-
-/* ==================== HERO SECTION ==================== */
-.hero {
-  position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 100px 2rem 60px;
-  overflow: hidden;
 }
 
-#particle-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
+/* PARTICLE CANVAS */
+#particles {
+  position: fixed; top:0; left:0;
+  width:100%; height:100%;
+  z-index:0; pointer-events:none;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 4rem;
-  align-items: center;
+/* NAV */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 20px 48px;
+  background: rgba(10,10,12,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
 }
-
-.hero-text { animation: fadeSlideUp 0.9s ease-out; }
-
-.hero-greeting {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 500;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.03em;
-}
-
-.hero-greeting .wave {
-  display: inline-block;
-  animation: wave 2.5s infinite;
-  transform-origin: 70% 70%;
-  font-size: 1.3rem;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.hero-title .highlight {
-  color: var(--accent);
-  position: relative;
-}
-
-.hero-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  max-width: 520px;
-  margin-bottom: 2rem;
-  font-weight: 300;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 30px;
-  border-radius: 100px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all var(--transition);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(232, 104, 51, 0.3);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid var(--border);
-}
-
-.btn-outline:hover {
-  border-color: var(--text-primary);
-  transform: translateY(-2px);
-}
-
-/* Hero visual — Abstract data viz card */
-.hero-visual {
-  animation: fadeSlideUp 0.9s ease-out 0.2s both;
-}
-
-.hero-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), #F4A261, #2A9D8F);
-}
-
-.hero-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-
-.hero-card-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.hero-card-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  color: #2A9D8F;
-  font-weight: 500;
-}
-
-.hero-card-status .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2A9D8F;
-  animation: pulse 2s infinite;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.stat-item {
-  padding: 1rem;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-sm);
-  text-align: center;
-}
-
-.stat-number {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  display: block;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2px;
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 5px 12px;
-  border-radius: 100px;
-  background: var(--accent-light);
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* ==================== SECTION LAYOUT ==================== */
-.section {
-  padding: 100px 2rem;
-}
-
-.section-header {
-  max-width: 600px;
-  margin-bottom: 3.5rem;
-}
-
-.section-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-}
-
-.section-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  font-weight: 300;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ==================== ABOUT SECTION ==================== */
-#about {
-  background: var(--bg-secondary);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.about-personal {
-  position: sticky;
-  top: 100px;
-}
-
-.about-photo-wrapper {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid var(--bg-card);
-  box-shadow: var(--shadow-md);
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--accent-light), #E0F2F1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-}
-
-.about-name {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  margin-bottom: 0.25rem;
-}
-
-.about-role {
-  font-size: 0.95rem;
-  color: var(--accent);
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.about-bio {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-}
-
-.about-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.about-detail {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.about-detail-icon {
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.about-socials {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: all var(--transition);
-}
-
-.social-link:hover {
-  background: var(--text-primary);
-  color: white;
-  border-color: var(--text-primary);
-  transform: translateY(-2px);
-}
-
-/* Right side — about content cards */
-.about-content { display: flex; flex-direction: column; gap: 1.5rem; }
-
-.about-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 2rem;
-  transition: all var(--transition);
-}
-
-.about-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.about-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-.about-card-icon.edu { background: #EDE7F6; }
-.about-card-icon.tech { background: #E0F2F1; }
-.about-card-icon.mission { background: var(--accent-light); }
-.about-card-icon.approach { background: #FFF8E1; }
-
-.about-card h3 {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.about-card p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-.about-card .tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 0.75rem;
-}
-
-.about-card .mini-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 3px 10px;
-  border-radius: 100px;
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* ==================== SKILLS / TOOLKIT SECTION ==================== */
-#skills {
-  background: var(--bg-primary);
-}
-
-.skills-wrap {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  transition: all var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--skill-color, var(--accent));
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-.skill-card:hover::before { opacity: 1; }
-
-.skill-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-}
-
-.skill-card h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.skill-card p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.skill-icon {
+nav .logo {
+  font-family: 'Instrument Serif', serif;
   font-size: 1.5rem;
-  margin-bottom: 0.75rem;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+nav .links { display:flex; gap:8px; }
+nav .links a {
+  color: var(--text-dim);
+  text-decoration:none;
+  font-size: 0.88rem;
+  font-weight:500;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  cursor:pointer;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+nav .links a:hover, nav .links a.active {
+  color: var(--accent);
+  background: var(--glow);
 }
 
-/* ==================== PROJECTS SECTION ==================== */
-#projects {
-  background: var(--bg-secondary);
+/* PAGE SYSTEM - NO SCROLL, TRANSITIONS */
+.page {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  padding: 90px 0 0 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0.5s;
+  z-index: 1;
+  overflow-y: auto;
+}
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s, visibility 0s 0s;
+  z-index: 2;
+}
+.page-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 48px 80px;
 }
 
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all var(--transition);
-  margin-bottom: 2rem;
+/* HERO (HOME PAGE) */
+.hero {
+  display:flex; flex-direction:column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 90px);
+  padding-bottom: 60px;
 }
-
-.project-card:hover {
-  box-shadow: var(--shadow-lg);
+.hero .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity:0; animation: fadeUp 0.7s ease 0.3s forwards;
 }
-
-.project-card-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  opacity:0; animation: fadeUp 0.7s ease 0.5s forwards;
 }
-
-.project-info {
-  padding: 2.5rem;
+.hero h1 em {
+  color: var(--accent);
+  font-style: italic;
 }
-
-.project-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+.hero .sub {
+  font-size: 1.12rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 40px;
+  opacity:0; animation: fadeUp 0.7s ease 0.7s forwards;
+}
+.hero .stats {
+  display:flex; gap:40px;
+  opacity:0; animation: fadeUp 0.7s ease 0.9s forwards;
+}
+.hero .stat-item .num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+}
+.hero .stat-item .label {
+  font-size: 0.78rem;
+  color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #2A9D8F;
-  background: #E0F2F1;
-  padding: 4px 12px;
-  border-radius: 100px;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  margin-top:2px;
 }
-
-.project-badge .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #2A9D8F;
-  animation: pulse 2s infinite;
+.hero .cta-row {
+  display:flex; gap:16px; margin-top:40px;
+  opacity:0; animation: fadeUp 0.7s ease 1.1s forwards;
 }
-
-.project-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-}
-
-.project-desc {
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 12px 28px;
+  border-radius: 8px;
   font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 1.25rem;
+  font-weight:600;
+  text-decoration:none;
+  transition: all 0.3s;
+  cursor:pointer;
+  border:none;
+  letter-spacing:0.02em;
 }
-
-.project-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.project-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.project-meta-item strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 1.5rem;
-}
-
-.project-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 4px 10px;
-  border-radius: 100px;
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-}
-
-.project-links {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.project-link {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: var(--transition);
-}
-
-.project-link:hover { color: var(--accent-hover); gap: 8px; }
-
-/* Project visual panel */
-.project-visual {
-  background: linear-gradient(135deg, #1A1A1A, #2D2D2D);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2.5rem;
-  position: relative;
-  min-height: 380px;
-}
-
-.project-visual-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-}
-
-.project-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  width: 100%;
-  max-width: 300px;
-}
-
-.project-stat {
-  text-align: center;
-  padding: 1.25rem 1rem;
-  background: rgba(255,255,255,0.06);
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.project-stat-num {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: white;
-  display: block;
-}
-
-.project-stat-label {
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2px;
-}
-
-.project-visual-footer {
-  margin-top: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.3);
-}
-
-/* Coming soon project cards */
-.projects-upcoming {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.upcoming-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 2rem;
-  text-align: center;
-  opacity: 0.7;
-  transition: all var(--transition);
-}
-
-.upcoming-card:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.upcoming-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.upcoming-card h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.upcoming-card p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.upcoming-badge {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 3px 10px;
-  border-radius: 100px;
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-}
-
-/* ==================== CONTACT SECTION ==================== */
-#contact {
-  background: var(--bg-primary);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.contact-text h3 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-.contact-text p {
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.contact-channels {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact-channel {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition);
-}
-
-.contact-channel:hover {
-  background: var(--bg-card);
-  box-shadow: var(--shadow-sm);
-  transform: translateX(4px);
-}
-
-.contact-channel-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: var(--bg-card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
-.contact-channel-info {
-  flex: 1;
-}
-
-.contact-channel-label {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.contact-channel-value {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-/* Quote / CTA card */
-.contact-cta-card {
-  background: var(--text-primary);
-  color: white;
-  border-radius: var(--radius-lg);
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-cta-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -30%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+.btn-primary {
   background: var(--accent);
-  opacity: 0.1;
+  color: var(--bg);
 }
-
-.contact-cta-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  position: relative;
+.btn-primary:hover { background: #d4b578; transform:translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
 }
+.btn-ghost:hover { border-color: var(--accent); color:var(--accent); }
 
-.contact-cta-card p {
-  color: rgba(255,255,255,0.7);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  position: relative;
-}
-
-.contact-cta-card .btn-primary {
-  position: relative;
-}
-
-/* ==================== FOOTER ==================== */
-.footer {
-  padding: 2rem;
-  text-align: center;
-  border-top: 1px solid var(--border-light);
-  background: var(--bg-primary);
-}
-
-.footer p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.footer a {
+/* SECTION HEADERS */
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
   color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  margin-bottom: 16px;
+  line-height:1.2;
+}
+.section-sub {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height:1.7;
+  max-width:640px;
+  margin-bottom: 48px;
+}
+
+/* ABOUT PAGE */
+.about-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.about-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.3s;
+}
+.about-card:hover { border-color: rgba(201,169,110,0.25); }
+.about-card h3 {
+  font-size: 1.05rem;
+  font-weight:600;
+  margin-bottom:10px;
+  color: var(--accent);
+}
+.about-card p {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  line-height:1.65;
+}
+.credentials {
+  display:flex; flex-direction:column; gap:12px;
+  margin-top:36px;
+}
+.cred-item {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 20px;
+  background: var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+.cred-icon { font-size:1.3rem; }
+.cred-text { font-size:0.92rem; }
+.cred-text strong { color:var(--text); }
+.cred-text span { color:var(--text-dim); }
+
+/* PROJECT PAGE */
+.project-card {
+  background: var(--bg2);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:36px;
+  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+}
+.project-card::before {
+  content:''; position:absolute;
+  top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+.project-card.secondary::before {
+  background: linear-gradient(90deg, #555, #777);
+}
+.project-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  color:var(--accent2);
+  background:rgba(126,184,162,0.1);
+  padding:4px 12px;
+  border-radius:20px;
+  margin-bottom:16px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.project-badge.pipeline {
+  color:#888;
+  background:rgba(136,136,136,0.1);
+}
+.project-card h3 {
+  font-family:'Instrument Serif', serif;
+  font-size:1.6rem;
+  font-weight:400;
+  margin-bottom:8px;
+}
+.project-card .tagline {
+  color:var(--accent);
+  font-size:0.92rem;
+  font-style:italic;
+  margin-bottom:18px;
+}
+.project-card p {
+  color:var(--text-dim);
+  font-size:0.95rem;
+  line-height:1.7;
+  margin-bottom:14px;
+}
+.project-card .highlight {
+  color: var(--text);
   font-weight: 500;
 }
-
-/* ==================== SCROLL ANIMATIONS ==================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+.tech-stack {
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:18px;
+}
+.tech-tag {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  color:var(--accent);
+  background:var(--glow);
+  padding:5px 12px;
+  border-radius:6px;
+  border:1px solid rgba(201,169,110,0.15);
+}
+.tech-tag.dim {
+  color:var(--text-dim);
+  background:rgba(255,255,255,0.03);
+  border-color:var(--border);
+}
+.result-grid {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:12px;
+  margin:20px 0;
+}
+.result-item {
+  text-align:center;
+  padding:16px 10px;
+  background:rgba(201,169,110,0.04);
+  border:1px solid rgba(201,169,110,0.1);
+  border-radius:10px;
+}
+.result-item .val {
+  font-family:'Instrument Serif', serif;
+  font-size:1.5rem;
+  color:var(--accent);
+}
+.result-item .lbl {
+  font-size:0.7rem;
+  color:var(--text-dim);
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  margin-top:4px;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* EXECUTIVE SUMMARY PAGE */
+.exec-content { max-width:760px; }
+.exec-content h2 {
+  font-family:'Instrument Serif', serif;
+  font-size:1.6rem;
+  font-weight:400;
+  margin: 36px 0 14px;
+  color:var(--accent);
+}
+.exec-content h2:first-of-type { margin-top:0; }
+.exec-content p {
+  font-size:1rem;
+  color:var(--text-dim);
+  line-height:1.8;
+  margin-bottom:14px;
+}
+.exec-content strong { color:var(--text); }
+.exec-content ul {
+  list-style:none;
+  padding:0;
+  margin:10px 0 18px;
+}
+.exec-content ul li {
+  position:relative;
+  padding: 8px 0 8px 20px;
+  font-size:0.95rem;
+  color:var(--text-dim);
+  line-height:1.65;
+}
+.exec-content ul li::before {
+  content:'→';
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:bold;
+}
+.exec-quote {
+  border-left: 3px solid var(--accent);
+  padding: 16px 24px;
+  margin: 24px 0;
+  background: var(--glow);
+  border-radius: 0 10px 10px 0;
+  font-size:1rem;
+  font-style:italic;
+  color:var(--text);
+  line-height:1.7;
 }
 
-/* ==================== KEYFRAMES ==================== */
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* CONTACT PAGE */
+.contact-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:18px;
+  margin-top:32px;
+}
+.contact-card {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  text-align:center;
+  text-decoration:none;
+  color:var(--text);
+  transition: all 0.3s;
+}
+.contact-card:hover {
+  border-color:var(--accent);
+  transform:translateY(-4px);
+}
+.contact-card .icon { font-size:1.8rem; margin-bottom:12px; }
+.contact-card h4 { font-size:0.95rem; margin-bottom:6px; }
+.contact-card p { font-size:0.82rem; color:var(--text-dim); }
+.open-note {
+  margin-top:48px;
+  padding:28px;
+  background:var(--glow);
+  border:1px solid rgba(201,169,110,0.15);
+  border-radius:12px;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--text-dim);
+}
+.open-note strong { color:var(--text); }
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  font-size:0.78rem;
+  color:var(--text-dim);
+  border-top:1px solid var(--border);
 }
 
-@keyframes wave {
-  0%, 60%, 100% { transform: rotate(0deg); }
-  10%, 30% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
+/* SCROLLBAR */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:rgba(201,169,110,0.3); border-radius:3px; }
 
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 900px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2.5rem;
-  }
-  .hero-subtitle { margin-left: auto; margin-right: auto; }
-  .hero-actions { justify-content: center; }
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .about-personal {
-    position: static;
-    text-align: center;
-  }
-  .about-photo-wrapper { margin: 0 auto 1.5rem; }
-  .about-socials { justify-content: center; }
-  .project-card-inner { grid-template-columns: 1fr; }
-  .project-visual { min-height: 260px; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .skills-wrap { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 640px) {
-  .nav-links { 
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--bg-primary);
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    z-index: 999;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1.2rem; }
-  .nav-hamburger { display: flex; }
-  .section { padding: 60px 1.25rem; }
-  .hero { padding: 80px 1.25rem 40px; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-  .project-meta { grid-template-columns: 1fr; }
-  .skills-wrap { grid-template-columns: 1fr; }
-  .projects-upcoming { grid-template-columns: 1fr; }
+/* RESPONSIVE */
+@media (max-width:768px) {
+  nav { padding:16px 20px; }
+  nav .links a { padding:6px 10px; font-size:0.76rem; }
+  .page-inner { padding:30px 20px 60px; }
+  .about-grid { grid-template-columns:1fr; }
+  .result-grid { grid-template-columns:repeat(2,1fr); }
+  .contact-grid { grid-template-columns:1fr; }
+  .hero .stats { gap:24px; flex-wrap:wrap; }
 }
 </style>
 </head>
 <body>
 
-<!-- ==================== NAVIGATION ==================== -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Abhinav<span>.</span></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about" onclick="closeMenu()">About</a></li>
-      <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
-      <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-      <li><a href="#contact" onclick="closeMenu()" class="nav-cta">Let's Talk</a></li>
-    </ul>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Abhinav.</div>
+  <div class="links">
+    <a onclick="showPage('home')" class="active" data-page="home">Home</a>
+    <a onclick="showPage('about')" data-page="about">About</a>
+    <a onclick="showPage('projects')" data-page="projects">Projects</a>
+    <a onclick="showPage('summary')" data-page="summary">Executive Summary</a>
+    <a onclick="showPage('contact')" data-page="contact">Contact</a>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero" id="hero">
-  <canvas id="particle-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-greeting">
-        <span class="wave">👋</span> Hello, I'm Abhinav Pandey
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="page-inner hero">
+    <div class="tag">ML Engineer &middot; Researcher &middot; Applied Mathematics Enthusiast</div>
+    <h1>I found a <em>$45 billion</em><br>forecasting blind spot.</h1>
+    <div class="sub">
+      Every e-commerce platform in India forecasts wedding demand. None of them use the calendar system that determines when 10 million weddings actually happen each year. I built the missing feature layer.
+    </div>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="num">6.4%</div>
+        <div class="label">RMSE Improvement</div>
       </div>
-      <h1 class="hero-title">
-        I build <span class="highlight">intelligent systems</span> that solve real-world problems.
-      </h1>
-      <p class="hero-subtitle">
-        A Mathematics educator turned AI/ML practitioner — blending deep analytical rigour with a passion for building machine learning models that create tangible impact, especially in domains that matter.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View My Work →</a>
-        <a href="#about" class="btn btn-outline">Know More</a>
+      <div class="stat-item">
+        <div class="num">p=0.02</div>
+        <div class="label">Stat. Significant</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">46</div>
+        <div class="label">Engineered Features</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">0</div>
+        <div class="label">Prior Work Exists</div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hero-card-header">
-          <span class="hero-card-label">Current Focus</span>
-          <span class="hero-card-status"><span class="dot"></span> Active</span>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-number">3+</span>
-            <span class="stat-label">ML Projects</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">5</span>
-            <span class="stat-label">Algorithms</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">M.Tech</span>
-            <span class="stat-label">NIT Allahabad</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">AI/ML</span>
-            <span class="stat-label">Career Path</span>
-          </div>
-        </div>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Scikit-learn</span>
-          <span class="tech-tag">XGBoost</span>
-          <span class="tech-tag">SHAP</span>
-          <span class="tech-tag">Pandas</span>
-          <span class="tech-tag">TensorFlow</span>
-        </div>
-      </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" onclick="showPage('projects')">View Projects →</a>
+      <a class="btn btn-ghost" href="https://github.com/Abhinav3419/Wedding-Demand-Forecast" target="_blank">GitHub Repo</a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ==================== ABOUT ==================== -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-tag">About Me</span>
-      <h2 class="section-title">The Researcher Behind the Code</h2>
-      <p class="section-desc">An engineer at heart, a mathematician by training, and an AI builder by mission.</p>
-    </div>
+<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="page-inner">
+    <div class="section-tag">// About</div>
+    <div class="section-title">The Researcher Behind the Code</div>
+    <div class="section-sub">Applied Mathematics Enthusiast turned ML practitioner. I don't just apply algorithms — I identify structural patterns in problem domains that data alone won't reveal.</div>
+
     <div class="about-grid">
-      <div class="about-personal reveal">
-        <div class="about-photo-wrapper">🧑‍💻</div>
-        <h3 class="about-name">Abhinav Pandey</h3>
-        <p class="about-role">AI/ML Engineer & Researcher</p>
-        <p class="about-bio">
-          I'm a 33-year-old Mathematics Educator transitioning into the world of Artificial Intelligence and Machine Learning. With a strong analytical foundation from engineering and applied mechanics, I bring a unique interdisciplinary lens to building ML systems — one rooted in mathematical rigour and first-principles thinking.
-        </p>
-        <div class="about-details">
-          <div class="about-detail">
-            <span class="about-detail-icon">📍</span>
-            <span>India</span>
-          </div>
-          <div class="about-detail">
-            <span class="about-detail-icon">🎓</span>
-            <span>M.Tech, Applied Mechanics — NIT Allahabad (Motilal Nehru National Institute of Technology)</span>
-          </div>
-          <div class="about-detail">
-            <span class="about-detail-icon">🎓</span>
-            <span>B.Tech, Electronics & Instrumentation Engineering</span>
-          </div>
-          <div class="about-detail">
-            <span class="about-detail-icon">🧮</span>
-            <span>Mathematics Educator — building the bridge to AI/ML Engineering</span>
-          </div>
-          <div class="about-detail">
-            <span class="about-detail-icon">✉️</span>
-            <span>abhinavpandey3419@gmail.com</span>
-          </div>
-        </div>
-        <div class="about-socials">
-          <a href="mailto:abhinavpandey3419@gmail.com" class="social-link" title="Email">✉️</a>
-          <a href="https://linkedin.com/in/abhinav3419" target="_blank" class="social-link" title="LinkedIn">in</a>
-          <a href="https://github.com/Abhinav3419" target="_blank" class="social-link" title="GitHub">⌥</a>
-        </div>
+      <div class="about-card">
+        <h3>Mathematical Rigour</h3>
+        <p>M.Tech from NIT Allahabad in Applied Mechanics — deep exposure to computational methods, mathematical modelling, and data-driven problem solving. I decompose complex systems into solvable components with first-principles thinking.</p>
       </div>
+      <div class="about-card">
+        <h3>Domain-Driven ML</h3>
+        <p>The best features come from understanding the problem, not from AutoML. My Panchang insight came from cultural knowledge fused with statistical validation. I build feature layers that algorithms alone cannot discover.</p>
+      </div>
+      <div class="about-card">
+        <h3>Scientific Honesty</h3>
+        <p>I report null results alongside significant ones. Track A of my study showed no improvement — and I published it openly. Hiding negative findings is bad science, and I build my work to withstand scrutiny.</p>
+      </div>
+      <div class="about-card">
+        <h3>End-to-End Builder</h3>
+        <p>From data collection and feature engineering through cross-validation, statistical testing, interactive dashboards, and public repositories. Every project ships complete, documented, and reproducible.</p>
+      </div>
+    </div>
 
-      <div class="about-content">
-        <div class="about-card reveal">
-          <div class="about-card-icon edu">🎓</div>
-          <h3>Academic Foundation</h3>
-          <p>
-            My Master's degree from NIT Allahabad in Applied Mechanics gave me deep exposure to mathematical modelling, computational methods, and data-driven problem solving. My B.Tech in Electronics & Instrumentation built my engineering fundamentals — signal processing, control systems, and sensor data analysis — skills that transfer directly to feature engineering and ML pipeline design.
-          </p>
-        </div>
-
-        <div class="about-card reveal">
-          <div class="about-card-icon tech">💻</div>
-          <h3>Technical Journey</h3>
-          <p>
-            I'm currently building proficiency in Python and the full ML stack — NumPy, Pandas, Scikit-learn, Matplotlib, XGBoost, and SHAP for explainability. My approach is project-first: I learn by building real things with real data, not just running tutorials. Every concept I study gets applied to a working model within days.
-          </p>
-          <div class="tag-row">
-            <span class="mini-tag">Python</span>
-            <span class="mini-tag">NumPy</span>
-            <span class="mini-tag">Pandas</span>
-            <span class="mini-tag">Scikit-learn</span>
-            <span class="mini-tag">XGBoost</span>
-            <span class="mini-tag">SHAP</span>
-            <span class="mini-tag">Matplotlib</span>
-          </div>
-        </div>
-
-        <div class="about-card reveal">
-          <div class="about-card-icon mission">🎯</div>
-          <h3>What Drives Me</h3>
-          <p>
-            I believe the best AI is built by people who understand both the math and the domain. My background as a mathematics educator gives me the ability to decompose complex problems into solvable components — and my experience teaching gives me clarity of thought that translates into cleaner models, better documentation, and more interpretable results. I'm drawn to domains where ML can create measurable, real-world impact.
-          </p>
-        </div>
-
-        <div class="about-card reveal">
-          <div class="about-card-icon approach">🔬</div>
-          <h3>My Approach to AI</h3>
-          <p>
-            I build with transparency and scientific rigour. Every model I develop includes interpretability at its core — I don't just care about accuracy metrics, I care about <em>why</em> a model makes the predictions it does. I document failures as honestly as successes, because reproducibility and intellectual honesty are what separate engineering from guesswork.
-          </p>
-        </div>
+    <div class="credentials">
+      <div class="cred-item">
+        <span class="cred-icon">🎓</span>
+        <div class="cred-text"><strong>M.Tech, Applied Mechanics</strong> <span>— MNNIT Allahabad | CGPA 7.4</span></div>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">🎓</span>
+        <div class="cred-text"><strong>B.Tech, Electronics & Instrumentation</strong> <span>— K.I.E.T Ghaziabad | 75.1%</span></div>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">📜</span>
+        <div class="cred-text"><strong>95+ Percentile GATE</strong> <span>— 3 attempts (2017, 2018, 2020)</span></div>
+      </div>
+      <div class="cred-item">
+        <span class="cred-icon">🏅</span>
+        <div class="cred-text"><strong>Qualified AFCAT & SSB Interview</strong> <span>— Indian Navy, First Attempt</span></div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ==================== SKILLS / TOOLKIT ==================== -->
-<section class="section" id="skills">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-tag">My Toolkit</span>
-      <h2 class="section-title">Skills & Technologies</h2>
-      <p class="section-desc">The tools and technologies I work with — and the ones I'm actively deepening.</p>
+<!-- PROJECTS -->
+<div class="page" id="page-projects">
+  <div class="page-inner">
+    <div class="section-tag">// Projects</div>
+    <div class="section-title">What I've Built</div>
+    <div class="section-sub">Real data. Real statistical tests. Real results. No toy datasets.</div>
+
+    <!-- MAIN PROJECT -->
+    <div class="project-card">
+      <div class="project-badge">● Live &middot; Published on GitHub</div>
+      <h3>The Missing Variable</h3>
+      <div class="tagline">"Every e-commerce platform forecasts wedding demand. None use the calendar that determines when weddings happen."</div>
+
+      <p><span class="highlight">Cultural Calendar-Driven Demand Forecasting</span> for India's $45B wedding apparel market. I engineered 16 novel features from the Hindu Panchang (Shubh Vivah Muhurat dates) and Hijri calendar (Ramadan/Muharram restricted periods) — encoding the religious calendars that govern when 10 million Indian weddings occur annually.</p>
+
+      <p>Tested against <span class="highlight">192 months of real Google Trends data</span> (2010–2025) using Leave-One-Year-Out cross-validation across 14 folds. Two model families (Ridge Regression + Gradient Boosting) both showed <span class="highlight">statistically significant improvement at p < 0.05</span>.</p>
+
+      <p>A Google Scholar search for <span class="highlight">"muhurat + demand forecasting" returns zero results</span>. This is first-of-its-kind applied ML research. The features are free, deterministic, and ready to deploy at any Indian e-commerce platform — translating to <span class="highlight">INR 3–5 Cr saved per season</span> on wedding inventory alone.</p>
+
+      <div class="result-grid">
+        <div class="result-item"><div class="val">6.4%</div><div class="lbl">RMSE Gain</div></div>
+        <div class="result-item"><div class="val">p=0.02</div><div class="lbl">Significant</div></div>
+        <div class="result-item"><div class="val">31.8%</div><div class="lbl">Cultural Signal</div></div>
+        <div class="result-item"><div class="val">11/14</div><div class="lbl">Folds Won</div></div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">scikit-learn</span>
+        <span class="tech-tag">SciPy</span>
+        <span class="tech-tag">Streamlit</span>
+        <span class="tech-tag">Google Trends</span>
+        <span class="tech-tag">Ridge Regression</span>
+        <span class="tech-tag">Gradient Boosting</span>
+        <span class="tech-tag">LOYO-CV</span>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:12px;">
+        <a class="btn btn-primary" href="https://github.com/Abhinav3419/Wedding-Demand-Forecast" target="_blank">View on GitHub →</a>
+        <a class="btn btn-ghost" onclick="showPage('summary')">Read Executive Summary</a>
+      </div>
     </div>
-    <div class="skills-wrap">
-      <div class="skill-card reveal" style="--skill-color: #3776AB;">
-        <div class="skill-icon">🐍</div>
-        <h3>Python</h3>
-        <p>Core programming language for all ML work. Data processing, scripting, automation, and model development.</p>
-      </div>
-      <div class="skill-card reveal" style="--skill-color: #F7931E;">
-        <div class="skill-icon">📊</div>
-        <h3>ML Libraries</h3>
-        <p>Scikit-learn, XGBoost, Random Forest, SVM, Logistic Regression — hands-on with classical ML algorithms.</p>
-      </div>
-      <div class="skill-card reveal" style="--skill-color: #E86833;">
-        <div class="skill-icon">📈</div>
-        <h3>Data Analysis</h3>
-        <p>NumPy, Pandas, Matplotlib, Seaborn — data wrangling, statistical analysis, and visualisation.</p>
-      </div>
-      <div class="skill-card reveal" style="--skill-color: #2A9D8F;">
-        <div class="skill-icon">🔍</div>
-        <h3>Explainable AI</h3>
-        <p>SHAP values, feature importance analysis — making model predictions interpretable and clinically/domain-meaningful.</p>
-      </div>
-      <div class="skill-card reveal" style="--skill-color: #7B1FA2;">
-        <div class="skill-icon">🧮</div>
-        <h3>Mathematics</h3>
-        <p>Linear algebra, probability, statistics, calculus — the bedrock for understanding and building ML from first principles.</p>
-      </div>
-      <div class="skill-card reveal" style="--skill-color: #1565C0;">
-        <div class="skill-icon">🧠</div>
-        <h3>Deep Learning (Learning)</h3>
-        <p>TensorFlow, Neural Networks — actively building foundational skills in deep learning architectures.</p>
+
+    <!-- SECONDARY PROJECT -->
+    <div class="project-card secondary">
+      <div class="project-badge pipeline">◐ In Pipeline</div>
+      <h3>HeartAI India — Cardiac Risk Prediction</h3>
+      <p>ML cardiac risk model trained on <span class="highlight">303 anonymised Indian hospital records</span> — addressing the critical gap left by Western-trained benchmarks (Cleveland, Framingham). Five-algorithm comparative framework (LR, RF, DT, SVM, XGBoost) with SHAP explainability and exhaustive combinatoric feature analysis across 8,191 feature combinations. Targeting peer-reviewed publication.</p>
+
+      <div class="tech-stack">
+        <span class="tech-tag dim">Python</span>
+        <span class="tech-tag dim">Scikit-learn</span>
+        <span class="tech-tag dim">XGBoost</span>
+        <span class="tech-tag dim">SHAP</span>
+        <span class="tech-tag dim">Clinical AI</span>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ==================== PROJECTS ==================== -->
-<section class="section" id="projects">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-tag">Projects</span>
-      <h2 class="section-title">What I'm Building</h2>
-      <p class="section-desc">Real projects with real data — because the best way to learn ML is to ship ML.</p>
-    </div>
+<!-- EXECUTIVE SUMMARY -->
+<div class="page" id="page-summary">
+  <div class="page-inner">
+    <div class="section-tag">// Executive Summary</div>
+    <div class="section-title">The Missing Variable</div>
+    <div class="section-sub">Cultural Calendar Features for Wedding Apparel Demand Forecasting in India</div>
 
-    <!-- HeartAI Project — Featured -->
-    <div class="project-card reveal">
-      <div class="project-card-inner">
-        <div class="project-info">
-          <div class="project-badge"><span class="dot"></span> Live Research</div>
-          <h3 class="project-title">HeartAI India — Cardiac Risk Prediction</h3>
-          <p class="project-desc">
-            A machine learning cardiac risk prediction model trained exclusively on anonymised Indian hospital data. Addresses the critical gap left by Western-trained benchmarks (Cleveland, Framingham) by learning India-specific cardiovascular risk patterns — earlier disease onset, metabolic co-morbidities, and diffuse coronary patterns unique to South Asian patients.
-          </p>
-          <div class="project-meta">
-            <div class="project-meta-item">
-              <strong>Data:</strong> 303 real patient records
-            </div>
-            <div class="project-meta-item">
-              <strong>Features:</strong> 13 clinical parameters
-            </div>
-            <div class="project-meta-item">
-              <strong>Models:</strong> LR, RF, DT, SVM, XGBoost
-            </div>
-            <div class="project-meta-item">
-              <strong>Target:</strong> Peer-reviewed publication
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Scikit-learn</span>
-            <span class="project-tag">XGBoost</span>
-            <span class="project-tag">SHAP</span>
-            <span class="project-tag">Clinical AI</span>
-            <span class="project-tag">Explainable AI</span>
-          </div>
-          <div class="project-links">
-            <a href="mailto:abhinavpandey3419@gmail.com" class="project-link">Collaborate →</a>
-          </div>
-        </div>
-        <div class="project-visual">
-          <span class="project-visual-label">Key Numbers</span>
-          <div class="project-stats">
-            <div class="project-stat">
-              <span class="project-stat-num">303</span>
-              <span class="project-stat-label">Patients</span>
-            </div>
-            <div class="project-stat">
-              <span class="project-stat-num">8,191</span>
-              <span class="project-stat-label">Feature Combos</span>
-            </div>
-            <div class="project-stat">
-              <span class="project-stat-num">5</span>
-              <span class="project-stat-label">ML Algorithms</span>
-            </div>
-            <div class="project-stat">
-              <span class="project-stat-num">13</span>
-              <span class="project-stat-label">Clinical Features</span>
-            </div>
-          </div>
-          <span class="project-visual-footer">Initiated 21 Feb 2026 · Active Development</span>
-        </div>
-      </div>
-    </div>
+    <div class="exec-content">
+      <h2>The Problem</h2>
+      <p>India's <strong>$45 billion wedding market</strong> is driven by the Hindu Panchang calendar — families schedule weddings on <em>Shubh Vivah Muhurat</em> (auspicious) dates. A year with 85 muhurat days creates very different demand patterns than one with 52. Yet every retail demand forecasting system in India uses only Gregorian calendar features (month, quarter) and sales lags. <strong>No deployed system encodes the religious calendar that actually determines when weddings happen.</strong></p>
 
-    <!-- Upcoming Projects -->
-    <div class="projects-upcoming reveal">
-      <div class="upcoming-card">
-        <div class="upcoming-icon">📦</div>
-        <h3>ML Portfolio Projects</h3>
-        <p>Classification, regression, and NLP projects using public datasets — building a comprehensive ML portfolio.</p>
-        <span class="upcoming-badge">Coming Soon</span>
+      <h2>The Approach</h2>
+      <p>I built a <strong>16-feature cultural calendar layer</strong> encoding Hindu muhurat counts, inauspicious period flags (Pitru Paksha, Kharmas, Mal Maas), and Hijri calendar restricted days. These were tested against real Google Trends data (2010–2025) for "wedding lehenga," "sherwani," and "bridal saree" search volumes using <strong>Leave-One-Year-Out cross-validation across 14 annual folds</strong>.</p>
+
+      <h2>Key Results</h2>
+      <p><strong>Ridge Regression:</strong> RMSE improved from 4.60 → 4.30 (+6.4%), p = 0.020, won 11/14 folds.</p>
+      <p><strong>Gradient Boosting:</strong> RMSE improved from 4.51 → 4.23 (+6.3%), p = 0.018, won 10/14 folds.</p>
+      <p><strong>Cultural features account for 31.8%</strong> of total predictive signal. <strong>hindu_muhurat_count</strong> ranks #4 among all features.</p>
+
+      <h2>Why This Matters</h2>
+      <ul>
+        <li><strong>First-of-its-kind:</strong> Google Scholar returns zero results for "muhurat + demand forecasting." This is genuinely novel applied ML research.</li>
+        <li><strong>Deterministic and free:</strong> Muhurat dates for future years are calculable today — no data collection or API costs needed.</li>
+        <li><strong>Cross-category applicability:</strong> The same feature layer applies to gold, jewellery, venues, catering, travel, real estate, and automotive.</li>
+      </ul>
+
+      <h2>E-Commerce Inventory Management</h2>
+      <p>For platforms like Myntra, Ajio, and Nykaa Fashion:</p>
+      <ul>
+        <li><strong>Pre-season stock positioning:</strong> If November has 15 muhurat days (vs. avg 12), stock 20–25% more wedding inventory. Calculable 6+ months in advance.</li>
+        <li><strong>Dynamic safety stock:</strong> A 6% RMSE improvement on INR 100 Cr wedding inventory = INR 3–5 Cr in reduced excess stock or avoided stockouts per season.</li>
+        <li><strong>Proactive markdowns:</strong> Trigger clearance immediately after the last muhurat cluster — don't wait for lagging sales signals.</li>
+        <li><strong>Seller communication:</strong> Share muhurat-based demand forecasts with marketplace sellers for better supply-side planning.</li>
+      </ul>
+
+      <div class="exec-quote">
+        Every Indian e-commerce platform forecasts wedding demand, and none of them use the calendar system that determines when weddings happen. This study proves that omission is measurable and fixable. The features are free, deterministic, and ready to deploy.
       </div>
-      <div class="upcoming-card">
-        <div class="upcoming-icon">🤖</div>
-        <h3>AI Product Case Studies</h3>
-        <p>End-to-end product thinking applied to AI — problem framing, data strategy, model selection, and deployment planning.</p>
-        <span class="upcoming-badge">Coming Soon</span>
-      </div>
-      <div class="upcoming-card">
-        <div class="upcoming-icon">📝</div>
-        <h3>Technical Blog</h3>
-        <p>Writing about ML concepts, project learnings, and the journey from mathematics to machine learning engineering.</p>
-        <span class="upcoming-badge">Coming Soon</span>
-      </div>
+
+      <p style="margin-top:24px;"><a class="btn btn-primary" href="https://github.com/Abhinav3419/Wedding-Demand-Forecast" target="_blank">Full Code & Data on GitHub →</a></p>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ==================== CONTACT ==================== -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-tag">Get In Touch</span>
-      <h2 class="section-title">Let's Connect</h2>
-      <p class="section-desc">Whether it's a collaboration, an opportunity, or just a conversation about AI — I'd love to hear from you.</p>
-    </div>
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="page-inner">
+    <div class="section-tag">// Contact</div>
+    <div class="section-title">Let's Connect</div>
+    <div class="section-sub">Whether it's a collaboration, an opportunity, or a conversation about cultural calendar features in ML — I'd love to hear from you.</div>
+
     <div class="contact-grid">
-      <div class="contact-text reveal">
-        <h3>Reach Out Anytime</h3>
-        <p>
-          I'm actively looking for opportunities in AI/ML engineering and AI product management. If you're building something interesting, have a dataset that needs a model, or simply want to connect — don't hesitate.
-        </p>
-        <div class="contact-channels">
-          <a href="mailto:abhinavpandey3419@gmail.com" class="contact-channel">
-            <div class="contact-channel-icon">✉️</div>
-            <div class="contact-channel-info">
-              <div class="contact-channel-label">Email</div>
-              <div class="contact-channel-value">abhinavpandey3419@gmail.com</div>
-            </div>
-          </a>
-          <a href="https://linkedin.com/in/abhinav3419" target="_blank" class="contact-channel">
-            <div class="contact-channel-icon">💼</div>
-            <div class="contact-channel-info">
-              <div class="contact-channel-label">LinkedIn</div>
-              <div class="contact-channel-value">linkedin.com/in/abhinav3419</div>
-            </div>
-          </a>
-          <a href="https://github.com/Abhinav3419" target="_blank" class="contact-channel">
-            <div class="contact-channel-icon">💻</div>
-            <div class="contact-channel-info">
-              <div class="contact-channel-label">GitHub</div>
-              <div class="contact-channel-value">github.com/Abhinav3419</div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="contact-cta-card">
-          <h3>Open to Opportunities</h3>
-          <p>
-            I'm transitioning from Mathematics Education into AI/ML Engineering and AI Product Management. I bring strong mathematical foundations, a project-first learning approach, and the drive to build systems that create real impact. Let's build something meaningful together.
-          </p>
-          <a href="mailto:abhinavpandey3419@gmail.com" class="btn btn-primary">
-            Say Hello →
-          </a>
-        </div>
-      </div>
+      <a class="contact-card" href="mailto:abhinavpandey3419@gmail.com">
+        <div class="icon">✉️</div>
+        <h4>Email</h4>
+        <p>abhinavpandey3419@gmail.com</p>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/abhinavpandey-ai-ml/" target="_blank">
+        <div class="icon">💼</div>
+        <h4>LinkedIn</h4>
+        <p>linkedin.com/in/abhinavpandey-ai-ml</p>
+      </a>
+      <a class="contact-card" href="https://github.com/Abhinav3419" target="_blank">
+        <div class="icon">💻</div>
+        <h4>GitHub</h4>
+        <p>github.com/Abhinav3419</p>
+      </a>
+    </div>
+
+    <div class="open-note">
+      <strong>Open to Opportunities</strong> — I'm transitioning into ML/AI Engineering and AI Product Management. I bring strong mathematical foundations, domain-driven feature engineering expertise, and the rigour to build systems that withstand statistical scrutiny. If your team is solving demand forecasting, inventory optimization, or cultural analytics problems — let's talk.
     </div>
   </div>
-</section>
+</div>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="footer">
-  <p>© 2026 Abhinav Pandey · Built with curiosity and Python · <a href="mailto:abhinavpandey3419@gmail.com">abhinavpandey3419@gmail.com</a></p>
-</footer>
-
-<!-- ==================== SCRIPTS ==================== -->
 <script>
-// ======== Mobile Menu ========
-function toggleMenu() {
-  document.getElementById('nav-links').classList.toggle('open');
+// PAGE TRANSITIONS
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav .links a').forEach(a => a.classList.remove('active'));
+  
+  const page = document.getElementById('page-' + name);
+  if (page) {
+    setTimeout(() => {
+      page.classList.add('active');
+      page.scrollTop = 0;
+    }, 80);
+  }
+  
+  const link = document.querySelector(`nav .links a[data-page="${name}"]`);
+  if (link) link.classList.add('active');
 }
-function closeMenu() {
-  document.getElementById('nav-links').classList.remove('open');
+
+// PARTICLE ANIMATION - subtle researcher aesthetic
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const PARTICLE_COUNT = 60;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.r = Math.random() * 1.5 + 0.5;
+    this.alpha = Math.random() * 0.3 + 0.05;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(201,169,110,${this.alpha})`;
+    ctx.fill();
+  }
 }
 
-// ======== Scroll Reveal ========
-const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, i * 80);
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
-revealElements.forEach(el => revealObserver.observe(el));
-
-// ======== Particle Canvas — Science & Tech ========
-(function() {
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let mouse = { x: -9999, y: -9999 };
-  let width, height, dpr;
-
-  function resize() {
-    dpr = window.devicePixelRatio || 1;
-    width = canvas.parentElement.offsetWidth;
-    height = canvas.parentElement.offsetHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function createParticles() {
-    particles = [];
-    const count = Math.min(Math.floor((width * height) / 12000), 120);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 1,
-        type: Math.random() > 0.7 ? 'node' : 'dot', // some are "nodes" (larger)
-        opacity: Math.random() * 0.4 + 0.15
-      });
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 140) {
-          const alpha = (1 - dist / 140) * 0.12;
-          ctx.strokeStyle = `rgba(232, 104, 51, ${alpha})`;
-          ctx.lineWidth = 0.6;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 150) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(201,169,110,${0.04 * (1 - dist/150)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
     }
-
-    // Draw particles
-    particles.forEach(p => {
-      // Mouse repel
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 120) {
-        const force = (120 - dist) / 120 * 0.8;
-        p.vx += (dx / dist) * force;
-        p.vy += (dy / dist) * force;
-      }
-
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vx *= 0.99;
-      p.vy *= 0.99;
-
-      // Wrap
-      if (p.x < -10) p.x = width + 10;
-      if (p.x > width + 10) p.x = -10;
-      if (p.y < -10) p.y = height + 10;
-      if (p.y > height + 10) p.y = -10;
-
-      // Draw
-      if (p.type === 'node') {
-        // Larger circle with ring
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(232, 104, 51, ${p.opacity * 0.3})`;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(232, 104, 51, ${p.opacity})`;
-        ctx.fill();
-      } else {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180, 170, 155, ${p.opacity})`;
-        ctx.fill();
-      }
-    });
-
-    requestAnimationFrame(draw);
   }
+}
 
-  canvas.parentElement.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-
-  canvas.parentElement.addEventListener('mouseleave', () => {
-    mouse.x = -9999;
-    mouse.y = -9999;
-  });
-
-  window.addEventListener('resize', () => {
-    resize();
-    createParticles();
-  });
-
-  resize();
-  createParticles();
-  draw();
-})();
-
-// ======== Nav scroll effect ========
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  if (window.scrollY > 50) {
-    nav.style.borderBottomColor = 'rgba(0,0,0,0.06)';
-  } else {
-    nav.style.borderBottomColor = 'var(--border-light)';
-  }
-});
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
