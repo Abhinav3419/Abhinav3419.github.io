@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhinav Pandey — ML Engineer & System Architect</title>
+<meta name="description" content="Portfolio of Abhinav Pandey — Machine Learning Engineer building physics-informed ML systems. M.Tech from NIT Allahabad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;
+  --surface:#111118;
+  --surface2:#1a1a24;
+  --text:#e8e6e3;
+  --text-dim:#8a8a9a;
+  --accent-orange:#ff6b35;
+  --accent-cyan:#00d4aa;
+  --accent-violet:#8b5cf6;
+  --accent-yellow:#fbbf24;
+  --accent-pink:#f472b6;
+  --accent-blue:#38bdf8;
+  --radius:12px;
+  --radius-lg:20px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+::selection{background:var(--accent-orange);color:var(--bg)}
+
+/* ─── NOISE OVERLAY ─── */
+body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,15,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--accent-orange);text-decoration:none;letter-spacing:-0.5px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.3s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent-orange);color:var(--bg);padding:0.5rem 1.25rem;border-radius:100px;font-weight:600;font-size:0.8rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,107,53,0.3)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.15;pointer-events:none}
+.hero-glow-1{background:var(--accent-orange);top:-200px;right:-100px}
+.hero-glow-2{background:var(--accent-violet);bottom:-200px;left:-100px}
+.hero-glow-3{background:var(--accent-cyan);top:50%;left:50%;transform:translate(-50%,-50%)}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface2);padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;color:var(--accent-cyan);font-weight:500;margin-bottom:2rem;border:1px solid rgba(0,212,170,0.15);animation:fadeInUp 0.8s ease}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-cyan);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:1.5rem;animation:fadeInUp 0.8s ease 0.1s both}
+.hero h1 .gradient-text{background:linear-gradient(135deg,var(--accent-orange),var(--accent-yellow),var(--accent-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.2rem;color:var(--text-dim);max-width:600px;margin-bottom:2.5rem;animation:fadeInUp 0.8s ease 0.2s both}
+.hero-stats{display:flex;gap:3rem;animation:fadeInUp 0.8s ease 0.3s both}
+.hero-stat-value{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent-orange)}
+.hero-stat-label{font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:0.2rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── SECTION COMMON ─── */
+section{padding:6rem 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--accent-cyan);margin-bottom:0.75rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem}
+.section-subtitle{color:var(--text-dim);font-size:1.05rem;max-width:600px;margin-bottom:3.5rem}
+
+/* ─── PROJECTS ─── */
+.projects-grid{display:flex;flex-direction:column;gap:2rem}
+.project-card{background:var(--surface);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:transform 0.4s,border-color 0.4s}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.1)}
+.project-info{padding:3rem;display:flex;flex-direction:column;justify-content:center}
+.project-number{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:2px;color:var(--text-dim);margin-bottom:0.75rem}
+.project-name{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:0.75rem;letter-spacing:-0.5px}
+.project-desc{color:var(--text-dim);font-size:0.95rem;margin-bottom:1.5rem;line-height:1.7}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.project-tag{font-family:'JetBrains Mono',monospace;font-size:0.7rem;padding:0.3rem 0.75rem;border-radius:100px;border:1px solid rgba(255,255,255,0.08);color:var(--text-dim)}
+.project-metrics{display:flex;gap:1.5rem;margin-bottom:1.5rem}
+.metric{display:flex;flex-direction:column}
+.metric-value{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem}
+.metric-label{font-size:0.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px}
+.project-link{display:inline-flex;align-items:center;gap:0.5rem;color:var(--accent-orange);text-decoration:none;font-weight:600;font-size:0.9rem;transition:gap 0.3s}
+.project-link:hover{gap:0.8rem}
+.building-badge{font-family:'JetBrains Mono',monospace;font-size:0.55rem;text-transform:uppercase;letter-spacing:2px;padding:0.25rem 0.7rem;border-radius:100px;background:rgba(118,185,0,0.12);color:#76B900;border:1px solid rgba(118,185,0,0.25);animation:badgePulse 2.5s ease infinite}
+@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(118,185,0,0.2)}50%{box-shadow:0 0 12px 4px rgba(118,185,0,0.15)}}
+.project-visual{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:350px}
+.project-visual-bg{position:absolute;inset:0}
+.pv-1{background:linear-gradient(135deg,#1a0f2e,#0f1a2e,#0a2020)}
+.pv-2{background:linear-gradient(135deg,#1a1005,#1a0f0a,#0f1a10)}
+.pv-3{background:linear-gradient(135deg,#0f0a1a,#1a0a15,#0a0f1a)}
+.pv-4{background:linear-gradient(135deg,#0a1a1a,#0a0f1a,#0f0a1a)}
+.project-visual-content{position:relative;z-index:2;padding:2rem;width:100%;text-align:center}
+
+/* project visual graphics */
+.vis-chart{display:flex;align-items:flex-end;justify-content:center;gap:6px;height:120px}
+.vis-bar{width:18px;border-radius:4px 4px 0 0;transition:height 0.6s ease}
+.vis-equation{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--accent-cyan);opacity:0.8;line-height:2}
+.vis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:260px;margin:0 auto}
+.vis-cell{aspect-ratio:1;border-radius:6px;opacity:0.6}
+.vis-pipeline{display:flex;flex-direction:column;gap:8px;align-items:center}
+.vis-pipe-step{font-family:'JetBrains Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border-radius:6px;border:1px solid rgba(255,255,255,0.1);color:var(--text-dim)}
+.vis-pipe-arrow{color:var(--text-dim);font-size:0.7rem}
+
+/* ─── CASE STUDIES SLIDER ─── */
+.cs-header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.cs-nav{display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.cs-nav-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:var(--surface2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s}
+.cs-nav-btn:hover{border-color:var(--accent-orange);color:var(--accent-orange);background:rgba(255,107,53,0.08)}
+.cs-counter{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--text-dim);min-width:40px;text-align:center}
+.cs-slider-wrapper{overflow:hidden;padding:0 2rem;cursor:grab}
+.cs-slider-wrapper:active{cursor:grabbing}
+.cs-track{display:flex;gap:1.5rem;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);padding:1rem 0}
+.cs-slide{flex:0 0 420px;background:var(--bg);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-lg);padding:2rem;text-decoration:none;color:var(--text);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
+.cs-slide:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.14);box-shadow:0 20px 50px rgba(0,0,0,0.4)}
+.cs-slide-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;border-radius:50%;filter:blur(60px);opacity:0;transition:opacity 0.4s;pointer-events:none}
+.cs-slide:hover .cs-slide-glow{opacity:0.15}
+.cs-slide-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem}
+.cs-logo-wrap{padding:0.5rem 0.75rem;border-radius:10px;display:inline-flex;align-items:center;height:44px}
+.cs-logo-wrap-multi{padding:0.4rem 0.5rem}
+.cs-logo{height:28px;width:auto}
+.cs-logo-wrap-multi .cs-logo{height:26px;width:180px}
+.cs-slide-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;color:rgba(255,255,255,0.05);line-height:1}
+.cs-slide-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;padding:0.3rem 0.75rem;border-radius:100px;color:#fff;margin-bottom:1rem;width:fit-content}
+.cs-slide-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.75rem;letter-spacing:-0.3px;line-height:1.3}
+.cs-slide-desc{color:var(--text-dim);font-size:0.82rem;line-height:1.7;margin-bottom:1rem;flex:1}
+.cs-slide-formula{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent-yellow);background:rgba(251,191,36,0.06);padding:0.45rem 0.85rem;border-radius:6px;display:inline-block;margin-bottom:1rem;border:1px solid rgba(251,191,36,0.1)}
+.cs-slide-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
+.cs-slide-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.2rem 0.6rem;border-radius:100px;border:1px solid rgba(255,255,255,0.07);color:var(--text-dim)}
+.cs-slide-footer{display:flex;gap:1.5rem;margin-top:auto;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.04)}
+.cs-slide-link{font-size:0.78rem;font-weight:600;transition:opacity 0.3s}
+.cs-dots{display:flex;justify-content:center;gap:0.5rem;padding:2rem 0 0.5rem}
+.cs-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);cursor:pointer;transition:all 0.3s;padding:0}
+.cs-dot.active{background:var(--accent-orange);width:28px;border-radius:4px}
+@media(max-width:700px){
+  .cs-slide{flex:0 0 calc(100vw - 3rem)}
+  .cs-header{flex-direction:column;align-items:flex-start}
+  .cs-slider-wrapper{padding:0 1.25rem}
+}
+
+/* ─── SKILLS ─── */
+.skills-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.skill-group{background:var(--surface);border:1px solid rgba(255,255,255,0.05);border-radius:var(--radius);padding:2rem;transition:border-color 0.3s}
+.skill-group:hover{border-color:rgba(255,255,255,0.1)}
+.skill-group-icon{font-size:1.5rem;margin-bottom:1rem}
+.skill-group-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1rem}
+.skill-items{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-item{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.35rem 0.75rem;border-radius:6px;background:var(--surface2);color:var(--text-dim);border:1px solid rgba(255,255,255,0.04);transition:color 0.3s,border-color 0.3s}
+.skill-item:hover{color:var(--text);border-color:rgba(255,255,255,0.1)}
+
+/* ─── JOURNEY / ABOUT ─── */
+.journey-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.journey-text{font-size:1.05rem;color:var(--text-dim);line-height:1.85}
+.journey-text p{margin-bottom:1.25rem}
+.journey-text strong{color:var(--text);font-weight:600}
+.journey-timeline{display:flex;flex-direction:column;gap:1.5rem}
+.timeline-item{display:flex;gap:1.25rem;position:relative}
+.timeline-dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.timeline-item:nth-child(1) .timeline-dot{background:var(--accent-orange)}
+.timeline-item:nth-child(2) .timeline-dot{background:var(--accent-cyan)}
+.timeline-item:nth-child(3) .timeline-dot{background:var(--accent-violet)}
+.timeline-item:nth-child(4) .timeline-dot{background:var(--accent-yellow)}
+.timeline-year{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim);letter-spacing:1px}
+.timeline-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-top:0.15rem}
+.timeline-detail{font-size:0.85rem;color:var(--text-dim);margin-top:0.2rem}
+
+/* ─── CONTACT ─── */
+.contact-section{text-align:center}
+.contact-section .section-subtitle{margin-left:auto;margin-right:auto}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.contact-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;border-radius:100px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.contact-btn:hover{transform:translateY(-2px)}
+.contact-primary{background:var(--accent-orange);color:var(--bg);box-shadow:0 4px 20px rgba(255,107,53,0.2)}
+.contact-primary:hover{box-shadow:0 8px 40px rgba(255,107,53,0.35)}
+.contact-secondary{background:var(--surface2);color:var(--text);border:1px solid rgba(255,255,255,0.08)}
+.contact-secondary:hover{border-color:rgba(255,255,255,0.2)}
+
+/* ─── FOOTER ─── */
+footer{padding:3rem 2rem;border-top:1px solid rgba(255,255,255,0.04);text-align:center}
+footer p{font-size:0.8rem;color:var(--text-dim)}
+
+/* ─── MOBILE ─── */
+.mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+@media(max-width:900px){
+  .project-card{grid-template-columns:1fr}
+  .project-visual{min-height:200px}
+  .journey-content{grid-template-columns:1fr;gap:2.5rem}
+  .hero-stats{gap:1.5rem}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .mobile-toggle{display:block}
+  nav{padding:1rem}
+  .hero{padding:7rem 1.25rem 3rem}
+  section{padding:4rem 1.25rem}
+  .hero-stats{flex-direction:column;gap:1rem}
+  .blog-grid{grid-template-columns:1fr}
+  .project-info{padding:2rem}
+  .contact-links{flex-direction:column;align-items:center}
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AP.</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#writing">Case Studies</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#journey">Journey</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk</a>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-3"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <span>Open to ML / AI roles</span>
+    </div>
+    <h1>
+      Data Talks, <span class="gradient-text">Only when</span><br>
+      you ask the Right Question<br>
+      in the Right Language.
+    </h1>
+    <p class="hero-sub">
+      Abhinav Pandey — Machine Learning Engineer & System Architect.
+      Applying mathematical rigour to real-world prediction problems
+      across climate science, demand forecasting, and clinical AI.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-value">5</div>
+        <div class="hero-stat-label">Research Projects</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">0.905</div>
+        <div class="hero-stat-label">Best AUC Score</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">NIT</div>
+        <div class="hero-stat-label">Allahabad M.Tech</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">// Featured Work</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-subtitle">Each project follows a research-first philosophy — hypothesis, experiment, honest results. I report null findings because hiding negatives is bad science.</p>
+
+    <div class="projects-grid">
+
+      <!-- Project 0: LIT-Vision — FLAGSHIP -->
+      <div class="project-card reveal" style="border:1px solid rgba(118,185,0,0.2);position:relative">
+        <div class="project-info">
+          <div class="project-number" style="display:flex;align-items:center;gap:0.75rem">
+            <span>00 — CUDA × COMPUTER VISION × EDGE AI</span>
+            <span class="building-badge">BUILDING NOW</span>
+          </div>
+          <h3 class="project-name">LIT-Vision</h3>
+          <p class="project-desc">GPU-accelerated maritime de-hazing system using parallelized Dark Channel Prior on raw CUDA kernels. Processes foggy maritime video feeds in real-time, extracts visibility intelligence, detects vessels via YOLOv10/TensorRT, and outputs Palantir AIP-ready JSON metadata for autonomous collision avoidance. Targeting &lt;10ms per 1080p frame — at least 10× faster than CPU/Python baselines.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" style="color:#76B900">&lt;10ms</div>
+              <div class="metric-label">Per Frame Target</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-orange)">10×</div>
+              <div class="metric-label">vs CPU Baseline</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-cyan)">1080p</div>
+              <div class="metric-label">Real-time Video</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">CUDA 13.x</span>
+            <span class="project-tag">C++17</span>
+            <span class="project-tag">Dark Channel Prior</span>
+            <span class="project-tag">Guided Filter</span>
+            <span class="project-tag">TensorRT</span>
+            <span class="project-tag">YOLOv10</span>
+            <span class="project-tag">pybind11</span>
+            <span class="project-tag">Edge AI</span>
+          </div>
+          <a href="https://github.com/Abhinav3419" class="project-link" target="_blank">Coming to GitHub &rarr;</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-bg" style="background:linear-gradient(135deg,#0a1a0a,#0f1a10,#0a0f1a)"></div>
+          <div class="project-visual-content">
+            <!-- NVIDIA Logo -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem">
+              <div style="display:flex;gap:2rem;align-items:center">
+                <svg width="100" height="38" viewBox="0 0 120 45" xmlns="http://www.w3.org/2000/svg">
+                  <text x="2" y="30" font-family="'Syne',sans-serif" font-weight="800" font-size="18" fill="#76B900" letter-spacing="1">NVIDIA</text>
+                  <rect x="0" y="36" width="75" height="2.5" rx="1" fill="#76B900" opacity="0.6"/>
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 16 16"><text x="4" y="12" font-size="12" fill="rgba(255,255,255,0.2)">×</text></svg>
+                <svg width="100" height="38" viewBox="0 0 120 45" xmlns="http://www.w3.org/2000/svg">
+                  <text x="2" y="30" font-family="'Syne',sans-serif" font-weight="700" font-size="16" fill="#e8e6e3" letter-spacing="0.5">PALANTIR</text>
+                  <rect x="0" y="36" width="85" height="2.5" rx="1" fill="#e8e6e3" opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="vis-pipeline" style="gap:6px">
+                <div class="vis-pipe-step" style="border-color:#76B900;color:#76B900;font-size:0.65rem">Hazy Maritime Feed</div>
+                <div class="vis-pipe-arrow" style="font-size:0.6rem">&#8595;</div>
+                <div class="vis-pipe-step" style="border-color:#76B900;color:#76B900;font-size:0.65rem">CUDA Dark Channel Prior</div>
+                <div class="vis-pipe-arrow" style="font-size:0.6rem">&#8595;</div>
+                <div class="vis-pipe-step" style="border-color:var(--accent-cyan);font-size:0.65rem">Guided Filter + Recovery</div>
+                <div class="vis-pipe-arrow" style="font-size:0.6rem">&#8595;</div>
+                <div class="vis-pipe-step" style="border-color:var(--accent-orange);font-size:0.65rem">YOLOv10 + Visibility Score</div>
+                <div class="vis-pipe-arrow" style="font-size:0.6rem">&#8595;</div>
+                <div class="vis-pipe-step" style="border-color:#e8e6e3;font-size:0.65rem">Palantir AIP JSON Output</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 1: ENSO -->
+      <div class="project-card reveal">
+        <div class="project-info">
+          <div class="project-number">01 — PHYSICS-INFORMED ML</div>
+          <h3 class="project-name">ENSO Free Energy Prediction</h3>
+          <p class="project-desc">Thermodynamic free energy framework that predicts El Niño onset using multi-domain Shannon entropy. Extends Jin's (1997) recharge oscillator with a 3-layer AND gate architecture — the first model to unify energy, entropy, and trigger mechanisms for ENSO.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-cyan)">0.905</div>
+              <div class="metric-label">AUC Score</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-violet)">6</div>
+              <div class="metric-label">Physics Features</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-yellow)">76yr</div>
+              <div class="metric-label">Data Span</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">XGBoost</span>
+            <span class="project-tag">Shannon Entropy</span>
+            <span class="project-tag">Thermodynamics</span>
+            <span class="project-tag">Walk-Forward CV</span>
+          </div>
+          <a href="https://github.com/Abhinav3419/ENSO-Free-Energy-Prediction" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-bg pv-1"></div>
+          <div class="project-visual-content">
+            <div class="vis-equation">
+              F(t) = E(t) − T<sub>eff</sub> × S(t)<br>
+              <span style="font-size:0.75rem;color:var(--text-dim)">Free Energy = Energy − Temperature × Entropy</span><br><br>
+              <span style="color:var(--accent-orange);font-size:0.8rem">AUC 0.905 | 6-month horizon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Wedding -->
+      <div class="project-card reveal">
+        <div class="project-info">
+          <div class="project-number">02 — CULTURAL ANALYTICS × ML</div>
+          <h3 class="project-name">Wedding Demand Forecast</h3>
+          <p class="project-desc">First demand forecasting system to incorporate Hindu Panchang muhurat dates as ML features. Cultural calendar features contribute 31.8% of total predictive signal — a statistically significant improvement (p=0.020) over lag-only baselines.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-orange)">6.4%</div>
+              <div class="metric-label">RMSE Reduction</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-cyan)">46</div>
+              <div class="metric-label">Features Eng.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-pink)">p=.02</div>
+              <div class="metric-label">Significance</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Ridge + GBM</span>
+            <span class="project-tag">Hindu Panchang</span>
+            <span class="project-tag">Google Trends</span>
+            <span class="project-tag">LOYO-CV</span>
+          </div>
+          <a href="https://github.com/Abhinav3419/Wedding-Demand-Forecast" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-bg pv-2"></div>
+          <div class="project-visual-content">
+            <div class="vis-chart" id="weddingChart"></div>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim);margin-top:1rem">Muhurat density vs demand correlation r = 0.434</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: MedScan AI -->
+      <div class="project-card reveal">
+        <div class="project-info">
+          <div class="project-number">03 — LLM + RAG + MCP</div>
+          <h3 class="project-name">MedScan AI</h3>
+          <p class="project-desc">Intelligent clinical lab report analyzer that ingests Indian-format PDF reports, extracts 56 canonical biomarkers with 209 aliases, validates against clinical reference ranges (Harrison's, WHO, ICMR), and generates cited medical interpretations via LLM + RAG.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-violet)">56</div>
+              <div class="metric-label">Biomarkers</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-yellow)">209</div>
+              <div class="metric-label">Aliases</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" style="color:var(--accent-cyan)">10</div>
+              <div class="metric-label">Categories</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">pdfplumber</span>
+            <span class="project-tag">LangChain</span>
+            <span class="project-tag">ChromaDB</span>
+            <span class="project-tag">Streamlit</span>
+            <span class="project-tag">MCP</span>
+          </div>
+          <a href="https://github.com/Abhinav3419" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-bg pv-3"></div>
+          <div class="project-visual-content">
+            <div class="vis-pipeline">
+              <div class="vis-pipe-step" style="border-color:var(--accent-orange)">PDF Report Input</div>
+              <div class="vis-pipe-arrow">&#8595;</div>
+              <div class="vis-pipe-step" style="border-color:var(--accent-cyan)">Dual Extraction Engine</div>
+              <div class="vis-pipe-arrow">&#8595;</div>
+              <div class="vis-pipe-step" style="border-color:var(--accent-violet)">Clinical Validation Layer</div>
+              <div class="vis-pipe-arrow">&#8595;</div>
+              <div class="vis-pipe-step" style="border-color:var(--accent-yellow)">LLM + RAG Interpretation</div>
+              <div class="vis-pipe-arrow">&#8595;</div>
+              <div class="vis-pipe-step" style="border-color:var(--accent-pink)">Cited Medical Report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Case Studies -->
+      <div class="project-card reveal">
+        <div class="project-info">
+          <div class="project-number">04 — PRODUCT + STRATEGY</div>
+          <h3 class="project-name">Case Study Portfolio</h3>
+          <p class="project-desc">Collection of product, strategy, and ML case studies demonstrating systems thinking across domains — from market analysis to technical architecture decisions. Bridges the gap between business strategy and ML implementation.</p>
+          <div class="project-tags">
+            <span class="project-tag">Product Strategy</span>
+            <span class="project-tag">ML Systems</span>
+            <span class="project-tag">Market Analysis</span>
+          </div>
+          <a href="https://github.com/Abhinav3419/Case-Studies" class="project-link" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-visual">
+          <div class="project-visual-bg pv-4"></div>
+          <div class="project-visual-content">
+            <div class="vis-grid">
+              <div class="vis-cell" style="background:var(--accent-orange)"></div>
+              <div class="vis-cell" style="background:var(--accent-cyan)"></div>
+              <div class="vis-cell" style="background:var(--accent-violet)"></div>
+              <div class="vis-cell" style="background:var(--accent-yellow)"></div>
+              <div class="vis-cell" style="background:var(--accent-pink)"></div>
+              <div class="vis-cell" style="background:var(--accent-blue)"></div>
+              <div class="vis-cell" style="background:var(--accent-orange)"></div>
+              <div class="vis-cell" style="background:var(--accent-cyan)"></div>
+              <div class="vis-cell" style="background:var(--accent-violet)"></div>
+              <div class="vis-cell" style="background:var(--accent-yellow)"></div>
+              <div class="vis-cell" style="background:var(--accent-pink)"></div>
+              <div class="vis-cell" style="background:var(--accent-blue)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="writing" style="background:var(--surface);overflow:hidden">
+  <div class="section-inner">
+    <div class="section-label">// Product Strategy & Innovation</div>
+    <div class="cs-header">
+      <div>
+        <h2 class="section-title">Case Studies</h2>
+        <p class="section-subtitle" style="margin-bottom:0">Original product case studies — real problems, real companies, first-principles solutions.</p>
+      </div>
+      <div class="cs-nav">
+        <button class="cs-nav-btn" id="csPrev" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="cs-counter"><span id="csCurrent">1</span> / 5</span>
+        <button class="cs-nav-btn" id="csNext" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-slider-wrapper">
+    <div class="cs-track" id="csTrack">
+
+      <!-- Slide 01 — Amazon Kindle -->
+      <a href="https://github.com/Abhinav3419/Case-Studies/tree/main/01-Kindle-Physical-Book-Aesthetics" target="_blank" class="cs-slide">
+        <div class="cs-slide-top">
+          <div class="cs-logo-wrap" style="background:rgba(255,153,0,0.1)">
+            <svg class="cs-logo" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+              <text x="6" y="26" font-family="'Syne',sans-serif" font-weight="800" font-size="20" fill="#FF9900">amazon</text>
+              <path d="M6 30 Q38 39 72 30" stroke="#FF9900" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="cs-slide-num">01</span>
+        </div>
+        <div class="cs-slide-badge" style="background:var(--accent-orange)">Product Management</div>
+        <h3 class="cs-slide-title">Kindle: Physical Book Aesthetics</h3>
+        <p class="cs-slide-desc">What if your Kindle page wrinkled when dropped, yellowed with age, and rustled when turned? Six data-driven features bridging the emotional gap between physical and digital reading.</p>
+        <div class="cs-slide-tags">
+          <span class="cs-slide-tag">CIRCLES + RICE</span>
+          <span class="cs-slide-tag">Behavioural UX</span>
+          <span class="cs-slide-tag">6 Novel Features</span>
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-link" style="color:var(--accent-cyan)">Live Demo</span>
+          <span class="cs-slide-link" style="color:var(--accent-orange)">Read Study &rarr;</span>
+        </div>
+        <div class="cs-slide-glow" style="background:var(--accent-orange)"></div>
+      </a>
+
+      <!-- Slide 02 — Google Sunroof -->
+      <a href="https://github.com/Abhinav3419/Case-Studies/tree/main/02-PROJECT-SUNROOF-Variable-Correction-for-Improved-Efficiency" target="_blank" class="cs-slide">
+        <div class="cs-slide-top">
+          <div class="cs-logo-wrap" style="background:rgba(66,133,244,0.1)">
+            <svg class="cs-logo" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+              <text x="6" y="28" font-family="'Syne',sans-serif" font-weight="700" font-size="22">
+                <tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC05">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan>
+              </text>
+            </svg>
+          </div>
+          <span class="cs-slide-num">02</span>
+        </div>
+        <div class="cs-slide-badge" style="background:var(--accent-cyan)">PM × Applied Physics × ML</div>
+        <h3 class="cs-slide-title">Project Sunroof 2.0: Atmospheric Correction</h3>
+        <p class="cs-slide-desc">The sun equation has a weak link. Corrects the Climatological Coefficient by introducing the Pressure Belt Multiplier and Marine Coastal Distance Correction.</p>
+        <div class="cs-slide-formula">E = (A · η · Isc) × [Wbase · Pb · Mc]</div>
+        <div class="cs-slide-tags">
+          <span class="cs-slide-tag">Physics-First</span>
+          <span class="cs-slide-tag">Original Research</span>
+          <span class="cs-slide-tag">Patent Worthy</span>
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-link" style="color:var(--accent-cyan)">Live Demo</span>
+          <span class="cs-slide-link" style="color:var(--accent-blue)">Read Study &rarr;</span>
+        </div>
+        <div class="cs-slide-glow" style="background:var(--accent-cyan)"></div>
+      </a>
+
+      <!-- Slide 03 — Netflix -->
+      <a href="https://github.com/Abhinav3419/Case-Studies/tree/main/03-Netflix-Sensory-Personalization" target="_blank" class="cs-slide">
+        <div class="cs-slide-top">
+          <div class="cs-logo-wrap" style="background:rgba(229,9,20,0.1)">
+            <svg class="cs-logo" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+              <text x="6" y="28" font-family="'Syne',sans-serif" font-weight="800" font-size="20" fill="#E50914" letter-spacing="1.5">NETFLIX</text>
+            </svg>
+          </div>
+          <span class="cs-slide-num">03</span>
+        </div>
+        <div class="cs-slide-badge" style="background:var(--accent-violet)">Behavioural Psychology</div>
+        <h3 class="cs-slide-title">Netflix: Sensory Personalization</h3>
+        <p class="cs-slide-desc">Netflix knows what you watched — not what you're feeling. Four context-aware features: Gen-Pulse, Sense-Stream, Atmosphere, and Pulse-Rec extending personalization into the viewer's real world.</p>
+        <div class="cs-slide-tags">
+          <span class="cs-slide-tag">CIRCLES + RICE</span>
+          <span class="cs-slide-tag">Sensor Engineering</span>
+          <span class="cs-slide-tag">4 Novel Features</span>
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-link" style="color:var(--accent-violet)">Read Study &rarr;</span>
+        </div>
+        <div class="cs-slide-glow" style="background:var(--accent-violet)"></div>
+      </a>
+
+      <!-- Slide 04 — Microsoft -->
+      <a href="https://github.com/Abhinav3419/Case-Studies/tree/main/04-BioAzure-DataCenter-BioFoundry-Symbiosis" target="_blank" class="cs-slide">
+        <div class="cs-slide-top">
+          <div class="cs-logo-wrap" style="background:rgba(0,164,239,0.08)">
+            <svg class="cs-logo" viewBox="0 0 130 40" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="9" width="10" height="10" fill="#F25022" rx="1"/>
+              <rect x="18" y="9" width="10" height="10" fill="#7FBA00" rx="1"/>
+              <rect x="6" y="21" width="10" height="10" fill="#00A4EF" rx="1"/>
+              <rect x="18" y="21" width="10" height="10" fill="#FFB900" rx="1"/>
+              <text x="34" y="25" font-family="'DM Sans',sans-serif" font-weight="600" font-size="13" fill="#e8e6e3">Microsoft</text>
+            </svg>
+          </div>
+          <span class="cs-slide-num">04</span>
+        </div>
+        <div class="cs-slide-badge" style="background:var(--accent-yellow);color:var(--bg)">Industrial Symbiosis</div>
+        <h3 class="cs-slide-title">Bio-Azure: Data Center × Bio-Foundry Heat Integration</h3>
+        <p class="cs-slide-desc">Routes DC waste heat to bio-foundries — thermal match is perfect, load is 24/7. Heat at 45–50°C feeds bioreactors needing 30–40°C. No heat pump for 5 of 7 processes. $3–6M annual savings.</p>
+        <div class="cs-slide-tags">
+          <span class="cs-slide-tag">Blueprint</span>
+          <span class="cs-slide-tag">Sustainability</span>
+          <span class="cs-slide-tag">40–60% Carbon Cut</span>
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-link" style="color:var(--accent-yellow)">Read Study &rarr;</span>
+        </div>
+        <div class="cs-slide-glow" style="background:var(--accent-yellow)"></div>
+      </a>
+
+      <!-- Slide 05 — Luxury Auto OEMs -->
+      <a href="https://github.com/Abhinav3419/Case-Studies/tree/main/05-Luxury-EV-Ethos-Intelligence-Suite" target="_blank" class="cs-slide">
+        <div class="cs-slide-top">
+          <div class="cs-logo-wrap cs-logo-wrap-multi" style="background:rgba(244,114,182,0.08)">
+            <svg class="cs-logo" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+              <!-- BMW -->
+              <circle cx="16" cy="20" r="11" fill="none" stroke="#0066B1" stroke-width="1.5"/>
+              <text x="10" y="24" font-family="'Syne',sans-serif" font-weight="800" font-size="8" fill="#0066B1">B</text>
+              <!-- Mercedes star -->
+              <circle cx="48" cy="20" r="11" fill="none" stroke="#AAAAAA" stroke-width="1.5"/>
+              <line x1="48" y1="10" x2="48" y2="30" stroke="#AAAAAA" stroke-width="1.2"/>
+              <line x1="39" y1="25" x2="48" y2="14" stroke="#AAAAAA" stroke-width="1.2"/>
+              <line x1="57" y1="25" x2="48" y2="14" stroke="#AAAAAA" stroke-width="1.2"/>
+              <!-- Porsche text -->
+              <text x="68" y="24" font-family="'Syne',sans-serif" font-weight="700" font-size="10" fill="#BB0A30">PORSCHE</text>
+              <!-- Audi rings -->
+              <circle cx="142" cy="20" r="7" fill="none" stroke="#C0C0C0" stroke-width="1.2"/>
+              <circle cx="153" cy="20" r="7" fill="none" stroke="#C0C0C0" stroke-width="1.2"/>
+              <circle cx="164" cy="20" r="7" fill="none" stroke="#C0C0C0" stroke-width="1.2"/>
+              <circle cx="175" cy="20" r="7" fill="none" stroke="#C0C0C0" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <span class="cs-slide-num">05</span>
+        </div>
+        <div class="cs-slide-badge" style="background:var(--accent-pink);color:var(--bg)">Automotive AI × Sensory UX</div>
+        <h3 class="cs-slide-title">Ethos Intelligence Suite: Empathy-First Luxury EV</h3>
+        <p class="cs-slide-desc">Three novel modules: Acoustic Resurrection Engine (generative V12 sound), Payload Oracle (AI weight-aware range), and Adaptive Guardian (per-driver safety envelope). Includes PRD + 3-phase GTM.</p>
+        <div class="cs-slide-tags">
+          <span class="cs-slide-tag">Empathy-First</span>
+          <span class="cs-slide-tag">PRD + GTM</span>
+          <span class="cs-slide-tag">3 Novel Modules</span>
+        </div>
+        <div class="cs-slide-footer">
+          <span class="cs-slide-link" style="color:var(--accent-pink)">Read Study &rarr;</span>
+        </div>
+        <div class="cs-slide-glow" style="background:var(--accent-pink)"></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Dot indicators -->
+  <div class="cs-dots" id="csDots">
+    <button class="cs-dot active" data-index="0"></button>
+    <button class="cs-dot" data-index="1"></button>
+    <button class="cs-dot" data-index="2"></button>
+    <button class="cs-dot" data-index="3"></button>
+    <button class="cs-dot" data-index="4"></button>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">// Tech Stack</div>
+    <h2 class="section-title">Skills & Tools</h2>
+    <p class="section-subtitle">Built through projects, not tutorials. Every tool here has been used in production-grade work.</p>
+
+    <div class="skills-layout">
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F9E0;</div>
+        <h3 class="skill-group-title">Machine Learning</h3>
+        <div class="skill-items">
+          <span class="skill-item">scikit-learn</span>
+          <span class="skill-item">XGBoost</span>
+          <span class="skill-item">Ridge / Lasso</span>
+          <span class="skill-item">GBM</span>
+          <span class="skill-item">Time Series</span>
+          <span class="skill-item">Feature Engineering</span>
+          <span class="skill-item">Walk-Forward CV</span>
+          <span class="skill-item">LOYO-CV</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F916;</div>
+        <h3 class="skill-group-title">AI & LLMs</h3>
+        <div class="skill-items">
+          <span class="skill-item">LangChain</span>
+          <span class="skill-item">RAG Pipelines</span>
+          <span class="skill-item">ChromaDB</span>
+          <span class="skill-item">MCP Protocol</span>
+          <span class="skill-item">Prompt Engineering</span>
+          <span class="skill-item">Vector Search</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F525;</div>
+        <h3 class="skill-group-title">GPU Compute & Vision</h3>
+        <div class="skill-items">
+          <span class="skill-item">CUDA 13.x</span>
+          <span class="skill-item">C++17</span>
+          <span class="skill-item">TensorRT</span>
+          <span class="skill-item">OpenCV CUDA</span>
+          <span class="skill-item">YOLOv10/v11</span>
+          <span class="skill-item">pybind11</span>
+          <span class="skill-item">NVIDIA Nsight</span>
+          <span class="skill-item">Edge AI / Jetson</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F40D;</div>
+        <h3 class="skill-group-title">Python & Data</h3>
+        <div class="skill-items">
+          <span class="skill-item">Python 3.10+</span>
+          <span class="skill-item">pandas</span>
+          <span class="skill-item">NumPy</span>
+          <span class="skill-item">SciPy</span>
+          <span class="skill-item">Matplotlib</span>
+          <span class="skill-item">Seaborn</span>
+          <span class="skill-item">pdfplumber</span>
+          <span class="skill-item">ReportLab</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F3D7;&#xFE0F;</div>
+        <h3 class="skill-group-title">Tools & Deployment</h3>
+        <div class="skill-items">
+          <span class="skill-item">Git / GitHub</span>
+          <span class="skill-item">Streamlit</span>
+          <span class="skill-item">Google Trends API</span>
+          <span class="skill-item">NOAA Data</span>
+          <span class="skill-item">GitHub Pages</span>
+          <span class="skill-item">Linux</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F4D0;</div>
+        <h3 class="skill-group-title">Mathematics & Physics</h3>
+        <div class="skill-items">
+          <span class="skill-item">Applied Mechanics</span>
+          <span class="skill-item">Thermodynamics</span>
+          <span class="skill-item">Statistical Testing</span>
+          <span class="skill-item">Information Theory</span>
+          <span class="skill-item">Signal Processing</span>
+          <span class="skill-item">Hypothesis Design</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-icon">&#x1F4CB;</div>
+        <h3 class="skill-group-title">Product & Strategy</h3>
+        <div class="skill-items">
+          <span class="skill-item">Product Thinking</span>
+          <span class="skill-item">Case Studies</span>
+          <span class="skill-item">Market Analysis</span>
+          <span class="skill-item">ML System Design</span>
+          <span class="skill-item">Technical Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" style="background:var(--surface)">
+  <div class="section-inner">
+    <div class="section-label">// Background</div>
+    <h2 class="section-title">The Journey</h2>
+    <p class="section-subtitle">Applied mathematics meets machine learning — a foundation built on physics and first-principles thinking.</p>
+
+    <div class="journey-content">
+      <div class="journey-text reveal">
+        <p>My approach to ML comes from a place most engineers don't start — <strong>applied mathematics and physics</strong>. The kind of first-principles thinking where you don't accept a result unless you can derive it from scratch. That rigour is now the backbone of every system I build.</p>
+        <p>I don't reach for AutoML and leaderboard chasing. I reach for <strong>physics-informed feature engineering</strong>, <strong>honest null results</strong>, and <strong>statistical rigour</strong> that would survive peer review. My M.Tech in Applied Mechanics from NIT Allahabad gave me thermodynamics, entropy, and oscillator theory — the exact toolkit that powers my ENSO prediction framework.</p>
+        <p>Today I build at the intersection of <strong>domain knowledge and ML systems</strong>: clinical AI that understands biomarker physiology, demand models that read the Hindu calendar, climate predictors grounded in free energy calculations, and product strategies rooted in science. I'm looking for teams that value depth over surface-level metrics.</p>
+      </div>
+      <div class="journey-timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year">2015 — 2017</div>
+            <div class="timeline-title">M.Tech, Applied Mechanics</div>
+            <div class="timeline-detail">MNNIT Allahabad — Thermodynamics, numerical methods, oscillator systems</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year">2017 — 2020</div>
+            <div class="timeline-title">Physics & Mathematics Educator</div>
+            <div class="timeline-detail">First-principles teaching, mathematical modelling, and deep problem-solving across applied sciences</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year">2020 — PRESENT</div>
+            <div class="timeline-title">ML Engineer & Product Strategist</div>
+            <div class="timeline-detail">Physics-informed ML systems, product case studies, LLM/RAG pipelines — research-grade work shipped as real products</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year">SHIPPING NOW</div>
+            <div class="timeline-title">Active Projects</div>
+            <div class="timeline-detail">ENSO prediction (AUC 0.905), Wedding Demand Forecast, MedScan AI, 5 product case studies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="section-label">// Get in Touch</div>
+    <h2 class="section-title">Let's Build Something</h2>
+    <p class="section-subtitle">Open to ML Engineer, AI Engineer, and AI Product Management roles. Based in New Delhi, India.</p>
+    <div class="contact-links">
+      <a href="mailto:abhinavpandey3419@gmail.com" class="contact-btn contact-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        Email Me
+      </a>
+      <a href="https://linkedin.com/in/abhinavpandey-ai-ml" class="contact-btn contact-secondary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Abhinav3419" class="contact-btn contact-secondary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Abhinav Pandey. Built with intent, shipped with rigour.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Wedding chart bars
+const chartEl = document.getElementById('weddingChart');
+if (chartEl) {
+  const heights = [40, 25, 70, 90, 30, 15, 55, 85, 95, 45, 60, 75];
+  const colors = ['var(--accent-orange)','var(--accent-yellow)','var(--accent-orange)','var(--accent-pink)','var(--accent-yellow)','var(--accent-cyan)','var(--accent-orange)','var(--accent-pink)','var(--accent-orange)','var(--accent-yellow)','var(--accent-orange)','var(--accent-pink)'];
+  heights.forEach((h, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'vis-bar';
+    bar.style.height = '0px';
+    bar.style.background = colors[i];
+    bar.style.opacity = '0.7';
+    chartEl.appendChild(bar);
+    setTimeout(() => { bar.style.height = h + 'px'; }, 200 + i * 80);
+  });
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ── Case Studies Slider ──
+(function() {
+  const track = document.getElementById('csTrack');
+  const slides = track.querySelectorAll('.cs-slide');
+  const prevBtn = document.getElementById('csPrev');
+  const nextBtn = document.getElementById('csNext');
+  const counter = document.getElementById('csCurrent');
+  const dots = document.querySelectorAll('.cs-dot');
+  let current = 0;
+  const gap = 24; // 1.5rem
+
+  function getSlideWidth() {
+    return slides[0].offsetWidth + gap;
+  }
+
+  function getVisibleCount() {
+    const wrapperW = track.parentElement.offsetWidth;
+    return Math.max(1, Math.floor(wrapperW / getSlideWidth()));
+  }
+
+  function maxIndex() {
+    return Math.max(0, slides.length - getVisibleCount());
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, maxIndex()));
+    track.style.transform = `translateX(-${current * getSlideWidth()}px)`;
+    counter.textContent = current + 1;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.index)));
+
+  // Touch / drag support
+  let startX = 0, dragX = 0, isDragging = false;
+  track.addEventListener('pointerdown', e => {
+    isDragging = true; startX = e.clientX; dragX = 0;
+    track.style.transition = 'none';
+    track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    dragX = e.clientX - startX;
+    track.style.transform = `translateX(${-current * getSlideWidth() + dragX}px)`;
+  });
+  track.addEventListener('pointerup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+    const threshold = getSlideWidth() * 0.2;
+    if (dragX < -threshold) goTo(current + 1);
+    else if (dragX > threshold) goTo(current - 1);
+    else goTo(current);
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Recalc on resize
+  window.addEventListener('resize', () => goTo(current));
+})();
+</script>
+</body>
+</html>
